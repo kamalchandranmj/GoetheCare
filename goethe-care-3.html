@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goethe Care – Ausbildung & Pflege in Rüsselsheim</title>
+<style>
+  :root{
+    --forest-deep:#5C2430;
+    --forest-mid:#8C4A54;
+    --forest-pale:#F6EEE7;
+    --gold:#B98D3E;
+    --gold-dark:#8F6F2E;
+    --bg:#FFFFFF;
+    --bg-tint:#FAF6F0;
+    --border:#E9DCC9;
+    --ink:#2C2018;
+    --ink-soft:#7A6A58;
+    --white:#ffffff;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:Calibri,Candara,"Segoe UI",Verdana,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:Cambria,Georgia,"Times New Roman",serif;
+    color:var(--ink);
+    margin:0 0 .4em;
+    font-weight:700;
+  }
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:1160px;margin:0 auto;padding:0 24px;}
+  button{font-family:inherit;cursor:pointer;}
+  img{max-width:100%;display:block;}
+
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:80;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px;}
+  .logo{font-family:Cambria,Georgia,serif;font-weight:700;font-size:1.3rem;color:var(--forest-deep);letter-spacing:.2px;display:flex;align-items:center;gap:8px;}
+  .logo .mark{width:30px;height:30px;border-radius:50%;background:var(--forest-deep);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:Cambria,Georgia,serif;font-weight:700;font-size:1rem;}
+  nav ul{list-style:none;display:flex;gap:26px;margin:0;padding:0;}
+  nav a{font-size:.92rem;color:var(--ink-soft);font-weight:600;}
+  nav a:hover{color:var(--forest-deep);}
+  .nav-actions{display:flex;align-items:center;gap:12px;}
+  .lang-select{
+    border:1.5px solid var(--border);background:#fff;color:var(--ink);
+    padding:7px 10px;border-radius:20px;font-weight:600;font-size:.82rem;
+  }
+  .icon-link{
+    width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:var(--forest-pale);color:var(--forest-deep);
+  }
+  .icon-link:hover{background:var(--forest-deep);color:#fff;}
+  .cta-btn{
+    background:var(--gold);color:var(--forest-deep);padding:9px 18px;border-radius:24px;
+    font-weight:700;font-size:.88rem;white-space:nowrap;
+  }
+  .cta-btn:hover{background:var(--gold-dark);color:#fff;}
+  @media(max-width:900px){nav ul{display:none;}}
+
+  /* Hero */
+  .hero{position:relative;overflow:hidden;min-height:560px;display:flex;align-items:center;}
+  .hero-bg{
+    position:absolute;inset:0;
+    background:linear-gradient(100deg, rgba(31,74,61,.94) 0%, rgba(31,74,61,.80) 45%, rgba(31,74,61,.35) 100%),
+      url('https://images.unsplash.com/photo-1624727828489-a1e03b79bba8?fm=jpg&q=70&w=1600&auto=format&fit=crop') center/cover no-repeat;
+  }
+  .hero .container{position:relative;z-index:2;padding-top:70px;padding-bottom:70px;}
+  .hero-inner{max-width:660px;}
+  .hero .eyebrow{color:var(--gold);font-weight:700;letter-spacing:1.4px;text-transform:uppercase;font-size:.78rem;margin-bottom:14px;display:block;}
+  .hero h1{color:#fff;font-size:2.7rem;line-height:1.15;margin-bottom:18px;}
+  .hero p.lead{font-size:1.12rem;color:#EAD9DC;max-width:560px;margin-bottom:30px;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:38px;}
+  .btn-primary{background:var(--gold);color:var(--forest-deep);padding:13px 26px;border-radius:28px;font-weight:700;}
+  .btn-primary:hover{background:var(--gold-dark);color:#fff;}
+  .btn-outline{border:1.5px solid rgba(255,255,255,.55);color:#fff;padding:12px 24px;border-radius:28px;font-weight:700;}
+  .btn-outline:hover{background:rgba(255,255,255,.12);}
+  .quote-strip{
+    border-left:3px solid var(--gold);padding-left:16px;color:#E3CBD0;font-family:Cambria,Georgia,serif;
+    font-style:italic;font-size:1.02rem;max-width:520px;
+  }
+  .quote-strip cite{display:block;margin-top:6px;font-style:normal;font-size:.82rem;color:var(--gold);font-family:Calibri,sans-serif;}
+
+  section{padding:76px 0;}
+  .eyebrow{color:var(--gold-dark);font-weight:700;letter-spacing:1.1px;text-transform:uppercase;font-size:.76rem;margin-bottom:10px;display:block;}
+  .section-head{max-width:660px;margin-bottom:40px;}
+  .section-head h2{font-size:2rem;}
+  .section-head p{color:var(--ink-soft);font-size:1rem;}
+
+  /* Brand story */
+  .story{background:var(--bg-tint);}
+  .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;}
+  .story-img{border-radius:var(--radius);overflow:hidden;box-shadow:0 18px 40px rgba(31,74,61,.15);}
+  .story-img img{width:100%;height:360px;object-fit:cover;}
+  @media(max-width:860px){.story-grid{grid-template-columns:1fr;}}
+
+  /* Mission */
+  .mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  @media(max-width:860px){.mission-grid{grid-template-columns:1fr;}}
+  .m-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:26px;}
+  .m-card .icon{width:46px;height:46px;border-radius:12px;background:var(--forest-pale);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:16px;}
+  .m-card h3{font-size:1.05rem;margin-bottom:8px;}
+  .m-card p{font-size:.9rem;color:var(--ink-soft);margin:0;}
+
+  /* Program with image */
+  .program{background:var(--forest-deep);color:#fff;}
+  .program h2, .program .eyebrow{color:#fff;}
+  .program .eyebrow{color:var(--gold);}
+  .program-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;}
+  @media(max-width:860px){.program-grid{grid-template-columns:1fr;}}
+  .program-img{border-radius:var(--radius);overflow:hidden;}
+  .program-img img{width:100%;height:380px;object-fit:cover;}
+  .program-list{list-style:none;margin:24px 0 0;padding:0;}
+  .program-list li{display:flex;gap:12px;margin-bottom:16px;font-size:.95rem;color:#EAD9DC;}
+  .program-list li .dot{min-width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:7px;}
+
+  /* Future services */
+  .future{background:#fff;}
+  .future-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  @media(max-width:900px){.future-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.future-grid{grid-template-columns:1fr;}}
+  .f-card{background:var(--bg-tint);border:1px solid var(--border);border-radius:var(--radius);padding:20px;position:relative;}
+  .f-card .badge{position:absolute;top:14px;right:14px;background:var(--gold);color:var(--forest-deep);font-size:.66rem;font-weight:700;padding:3px 9px;border-radius:10px;}
+  .f-card .icon{font-size:1.4rem;margin-bottom:10px;display:block;}
+  .f-card h3{font-size:.98rem;margin-bottom:6px;}
+  .f-card p{font-size:.85rem;color:var(--ink-soft);margin:0;}
+
+  /* Languages */
+  .lang-section{background:var(--forest-pale);}
+  .lang-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
+  .lang-chip{
+    background:#fff;border:1.5px solid var(--border);border-radius:22px;padding:9px 17px;
+    font-size:.9rem;font-weight:700;color:var(--forest-deep);
+  }
+  .lang-source{font-size:.78rem;color:var(--ink-soft);margin-top:18px;max-width:640px;}
+
+  /* Instagram */
+  .insta-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:28px;}
+  .insta-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+  @media(max-width:860px){.insta-grid{grid-template-columns:repeat(3,1fr);}}
+  .insta-tile{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1/1;background:var(--bg-tint);}
+  .insta-tile img{width:100%;height:100%;object-fit:cover;}
+  .insta-tile .overlay{
+    position:absolute;inset:0;background:rgba(31,74,61,.55);display:flex;align-items:center;justify-content:center;
+    opacity:0;transition:opacity .2s;
+  }
+  .insta-tile:hover .overlay{opacity:1;}
+  .insta-note{font-size:.82rem;color:var(--ink-soft);margin-top:14px;font-style:italic;}
+
+  /* Contact / location */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+  @media(max-width:860px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-info div{margin-bottom:18px;}
+  .contact-info .label{font-size:.78rem;text-transform:uppercase;letter-spacing:.7px;color:var(--gold-dark);font-weight:700;margin-bottom:3px;}
+  .placeholder-tag{
+    display:inline-block;background:var(--forest-pale);color:var(--forest-deep);font-size:.68rem;
+    padding:2px 8px;border-radius:8px;margin-left:6px;font-weight:700;vertical-align:middle;
+  }
+  .map-embed{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);height:320px;}
+  .map-embed iframe{width:100%;height:100%;border:0;}
+  form{display:flex;flex-direction:column;gap:12px;margin-top:16px;}
+  input,textarea,select{
+    padding:11px 13px;border-radius:10px;border:1.5px solid var(--border);font-family:inherit;font-size:.94rem;background:#fff;
+  }
+  textarea{resize:vertical;min-height:90px;}
+  .submit-btn{background:var(--forest-deep);color:#fff;border:none;padding:12px;border-radius:10px;font-weight:700;font-size:.98rem;}
+  .submit-btn:hover{background:#3E1720;}
+
+  footer{background:var(--forest-deep);color:#D9C2C7;padding:44px 0 24px;}
+  .foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:24px;}
+  .foot-links{display:flex;flex-direction:column;gap:8px;}
+  .foot-links h4{color:#fff;font-size:.88rem;margin-bottom:4px;}
+  .foot-links button{background:none;border:none;color:#D9C2C7;font-size:.85rem;padding:0;text-align:left;}
+  .foot-links button:hover{color:var(--gold);}
+  .foot-social{display:flex;gap:10px;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:18px;font-size:.8rem;color:#B08D93;}
+
+  .modal-overlay{
+    display:none;position:fixed;inset:0;background:rgba(27,46,40,.55);z-index:200;
+    align-items:flex-start;justify-content:center;padding:60px 20px;overflow-y:auto;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal{background:#fff;border-radius:var(--radius);max-width:620px;width:100%;padding:32px;position:relative;}
+  .modal-close{position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.2rem;color:var(--ink-soft);}
+  .modal h2{font-size:1.3rem;}
+  .modal h3{font-size:.95rem;margin-top:18px;}
+  .modal p, .modal li{font-size:.88rem;color:var(--ink-soft);}
+
+  /* Cookie banner */
+  #cookieBanner{
+    position:fixed;left:0;right:0;bottom:0;z-index:300;background:var(--forest-deep);color:#fff;
+    padding:20px 24px;box-shadow:0 -8px 24px rgba(0,0,0,.15);
+  }
+  .cookie-inner{max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+  .cookie-inner p{margin:0;font-size:.88rem;color:#EAD9DC;max-width:640px;}
+  .cookie-btns{display:flex;gap:10px;flex-wrap:wrap;}
+  .cookie-btn-reject{border:1.5px solid rgba(255,255,255,.5);color:#fff;padding:9px 16px;border-radius:20px;font-weight:700;font-size:.82rem;background:none;}
+  .cookie-btn-prefs{border:none;color:#EAD9DC;padding:9px 4px;font-weight:700;font-size:.82rem;background:none;text-decoration:underline;}
+  .cookie-btn-accept{background:var(--gold);color:var(--forest-deep);padding:9px 18px;border-radius:20px;font-weight:700;font-size:.82rem;border:none;}
+  .cookie-prefs-body label{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;font-size:.88rem;color:var(--ink);}
+  .cookie-prefs-body input[type="checkbox"]{margin-top:3px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav-row">
+    <div class="logo"><span class="mark">G</span> <span data-i18n="brandName">Goethe Care</span></div>
+    <nav><ul>
+      <li><a href="#ueber-uns" data-i18n="nav1">Über uns</a></li>
+      <li><a href="#ausbildung" data-i18n="nav2">Ausbildung</a></li>
+      <li><a href="#zukunft" data-i18n="nav3">Zukunft</a></li>
+      <li><a href="#sprachen" data-i18n="nav4">Sprachen</a></li>
+      <li><a href="#kontakt" data-i18n="nav5">Kontakt</a></li>
+    </ul></nav>
+    <div class="nav-actions">
+      <a class="icon-link" href="https://www.instagram.com/goethecare_ruesselsheim" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+      <select class="lang-select" id="langSelect">
+        <option value="de">DE</option>
+        <option value="en">EN</option>
+        <option value="vi">VI</option>
+        <option value="tl">TL</option>
+        <option value="es">ES</option>
+        <option value="sw">SW</option>
+      </select>
+      <a class="cta-btn" href="#kontakt" data-i18n="ctaNav">Kontakt aufnehmen</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <span class="eyebrow" data-i18n="heroEyebrow">Ausbildungsakademie · Rüsselsheim am Main</span>
+      <h1 data-i18n="heroTitle">Bildung, die zur Berufung wird.</h1>
+      <p class="lead" data-i18n="heroLead">Goethe Care bildet die nächste Generation der Altenpflege aus – fachlich fundiert, sprachlich vorbereitet und menschlich getragen.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#ausbildung" data-i18n="heroCta1">Ausbildungsprogramm</a>
+        <a class="btn-outline" href="#kontakt" data-i18n="heroCta2">Jetzt informieren</a>
+      </div>
+      <div class="quote-strip">
+        <span data-i18n="goetheQuote">„Es ist nicht genug zu wissen, man muss auch anwenden; es ist nicht genug zu wollen, man muss auch tun."</span>
+        <cite>— Johann Wolfgang von Goethe, Wilhelm Meisters Wanderjahre</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ueber-uns" class="story">
+  <div class="container story-grid">
+    <div>
+      <span class="eyebrow" data-i18n="storyEyebrow">Warum „Goethe Care"?</span>
+      <h2 data-i18n="storyTitle">Der Name ist ein Versprechen.</h2>
+      <p data-i18n="storyP1">Goethe verstand Bildung nicht als bloßes Ansammeln von Wissen, sondern als „Bildung des ganzen Menschen" – Kopf, Hand und Herz zugleich. Genau diesem Ideal fühlen wir uns in der Pflegeausbildung verpflichtet.</p>
+      <p data-i18n="storyP2">Wir starten in Rüsselsheim als Ausbildungsakademie für angehende Pflegefachkräfte – mit Fachwissen, Deutschförderung und echter Praxisbegleitung. In einem zweiten Schritt bauen wir eigene ambulante Pflegeleistungen auf, orientiert an bewährten Standards etablierter Pflegedienste in der Region.</p>
+    </div>
+    <div>
+      <div class="story-img">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Johann_Heinrich_Wilhelm_Tischbein_-_Goethe_in_the_Roman_Campagna_-_Google_Art_Project.jpg?width=900" alt="Goethe in der römischen Campagna, Gemälde von Johann Heinrich Wilhelm Tischbein, 1787">
+      </div>
+      <p style="font-size:.78rem;color:var(--ink-soft);margin-top:10px;font-style:italic;" data-i18n="storyImgCaption">Johann Heinrich Wilhelm Tischbein, „Goethe in der römischen Campagna", 1787 — Städel Museum, Frankfurt. Gemeinfrei.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="missionEyebrow">Unsere Mission</span>
+      <h2 data-i18n="missionTitle">Drei Grundsätze, ein Ziel</h2>
+    </div>
+    <div class="mission-grid">
+      <div class="m-card">
+        <div class="icon">📘</div>
+        <h3 data-i18n="mission1T">Fundierte Ausbildung</h3>
+        <p data-i18n="mission1P">Theorie und Praxis nach anerkannten deutschen Standards – vorbereitet auf echte Anerkennungsverfahren.</p>
+      </div>
+      <div class="m-card">
+        <div class="icon">🗣️</div>
+        <h3 data-i18n="mission2T">Sprache von Anfang an</h3>
+        <p data-i18n="mission2P">Deutschförderung von B1 bis zur fachsprachlichen Sicherheit – begleitend zur fachlichen Ausbildung, nicht danach.</p>
+      </div>
+      <div class="m-card">
+        <div class="icon">🤝</div>
+        <h3 data-i18n="mission3T">Echte Begleitung</h3>
+        <p data-i18n="mission3P">Mentoring, Ankommenshilfe und ein Weg in echte berufliche Perspektiven in der Region Rüsselsheim.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="goetheDualEyebrow">Zwei Seiten desselben Denkens</span>
+      <h2 data-i18n="goetheDualTitle">Bildung und Gesundheit — bei Goethe untrennbar</h2>
+    </div>
+    <div class="story-grid">
+      <div>
+        <div class="story-img">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Goethe,_Farbenkreis_zur_Symbolisierung_des_menschlichen_Geistes-_und_Seelenlebens,_1809.jpg?width=700" alt="Goethes Farbenkreis von 1809 zur Symbolisierung des menschlichen Geistes- und Seelenlebens" style="object-fit:contain;background:#fff;">
+        </div>
+        <h3 style="margin-top:18px;font-size:1.05rem;" data-i18n="goetheEduT">Bildung: der forschende Blick</h3>
+        <p style="font-size:.9rem;color:var(--ink-soft);" data-i18n="goetheEduP">1809 entwickelte Goethe seinen eigenen Farbenkreis — nicht als Kunstübung, sondern als Ergebnis jahrelanger, geduldiger Beobachtung. Genau diese Haltung, genau hinzusehen und selbst zu verstehen, prägt auch unsere Ausbildung.</p>
+        <p style="font-size:.74rem;color:var(--ink-soft);font-style:italic;" data-i18n="goetheEduCaption">Johann Wolfgang von Goethe, Farbenkreis, 1809. Gemeinfrei, Wikimedia Commons.</p>
+      </div>
+      <div>
+        <div class="story-img">
+          <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="Hände halten einen jungen Setzling in der Erde">
+        </div>
+        <h3 style="margin-top:18px;font-size:1.05rem;" data-i18n="goetheHealthT">Gesundheit: Wurzeln in der Natur</h3>
+        <p style="font-size:.9rem;color:var(--ink-soft);" data-i18n="goetheHealthP">Goethe widmete sich jahrzehntelang dem Studium der Pflanzenmetamorphose — überzeugt, dass Wachstum, Rhythmus und Naturverbundenheit den Menschen im Innersten gesund halten. Ein Gedanke, der in der Altenpflege bis heute trägt.</p>
+        <p style="font-size:.74rem;color:var(--ink-soft);font-style:italic;" data-i18n="goetheHealthCaption">Symbolbild: Wachstum und Pflege.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ausbildung" class="program">
+  <div class="container program-grid">
+    <div class="program-img">
+      <img src="https://images.unsplash.com/photo-1731357266501-fc8594f84707?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="Praktische Ausbildung: zwei Personen betrachten gemeinsam ein anatomisches Modell">
+    </div>
+    <div>
+      <span class="eyebrow" data-i18n="progEyebrow">Ausbildungsprogramm</span>
+      <h2 data-i18n="progTitle">Was Sie bei uns lernen</h2>
+      <ul class="program-list">
+        <li><span class="dot"></span><span data-i18n="prog1">Grundlagen der Alten- und Behandlungspflege, praxisnah vermittelt</span></li>
+        <li><span class="dot"></span><span data-i18n="prog2">Deutsch für den Pflegeberuf – von Alltagssprache bis Fachvokabular</span></li>
+        <li><span class="dot"></span><span data-i18n="prog3">Begleitete Praxisphasen mit erfahrenen Mentor:innen</span></li>
+        <li><span class="dot"></span><span data-i18n="prog4">Unterstützung bei Anerkennung, Aufenthalt und Ankommen in Deutschland</span></li>
+        <li><span class="dot"></span><span data-i18n="prog5">Vorbereitung auf einen sicheren Berufseinstieg in der Region</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="zukunft" class="future">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="futureEyebrow">Der nächste Schritt</span>
+      <h2 data-i18n="futureTitle">Geplante Pflegeleistungen</h2>
+      <p data-i18n="futureLead">Nach dem Aufbau der Ausbildung erweitern wir Goethe Care schrittweise um ambulante Pflegeleistungen für Menschen in Rüsselsheim und Umgebung.</p>
+    </div>
+    <div class="future-grid">
+      <div class="f-card"><span class="badge" data-i18n="badgeSoon">Bald verfügbar</span><span class="icon">🤲</span><h3 data-i18n="fut1T">Grundpflege</h3><p data-i18n="fut1P">Körperpflege und Unterstützung im Alltag.</p></div>
+      <div class="f-card"><span class="badge" data-i18n="badgeSoon">Bald verfügbar</span><span class="icon">💉</span><h3 data-i18n="fut2T">Behandlungspflege</h3><p data-i18n="fut2P">Medizinische Versorgung durch Fachpersonal.</p></div>
+      <div class="f-card"><span class="badge" data-i18n="badgeSoon">Bald verfügbar</span><span class="icon">🕐</span><h3 data-i18n="fut3T">24h Betreuung</h3><p data-i18n="fut3P">Rund-um-die-Uhr-Begleitung zu Hause.</p></div>
+      <div class="f-card"><span class="badge" data-i18n="badgeSoon">Bald verfügbar</span><span class="icon">🔄</span><h3 data-i18n="fut4T">Verhinderungspflege</h3><p data-i18n="fut4P">Entlastung für pflegende Angehörige.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="sprachen" class="lang-section">
+  <div class="container">
+    <div class="section-head" style="margin-bottom:0;">
+      <span class="eyebrow" data-i18n="langEyebrow">Unsere Studierenden kommen von überall</span>
+      <h2 data-i18n="langTitle">Sprachen unserer Ausbildungsgemeinschaft</h2>
+    </div>
+    <div class="lang-chips">
+      <span class="lang-chip">Deutsch</span>
+      <span class="lang-chip">English</span>
+      <span class="lang-chip">Tiếng Việt</span>
+      <span class="lang-chip">Filipino</span>
+      <span class="lang-chip">Español</span>
+      <span class="lang-chip">Kiswahili</span>
+    </div>
+    <p class="lang-source" data-i18n="langSource">Ausgewählt nach den Herkunftsländern, aus denen internationale Pflege-Ausbildungsprogramme in Deutschland (u. a. Triple Win, APAL) heute vorwiegend rekrutieren: Philippinen, Vietnam, Mexiko, Brasilien, El Salvador und Kenia.</p>
+  </div>
+</section>
+
+<section id="instagram">
+  <div class="container">
+    <div class="insta-head">
+      <div>
+        <span class="eyebrow" data-i18n="instaEyebrow">Einblicke</span>
+        <h2 data-i18n="instaTitle">Goethe Care auf Instagram</h2>
+      </div>
+      <a class="cta-btn" href="https://www.instagram.com/goethecare_ruesselsheim" target="_blank" rel="noopener" data-i18n="instaBtn">@goethecare_ruesselsheim folgen</a>
+    </div>
+    <div class="insta-grid" id="instaGrid"></div>
+    <p class="insta-note" data-i18n="instaNote">Platzhalter-Ansicht – bindet sich später live an das Instagram-Konto an.</p>
+  </div>
+</section>
+
+<section id="kontakt" class="story">
+  <div class="container contact-grid">
+    <div class="contact-info">
+      <span class="eyebrow" data-i18n="contactEyebrow">Kontakt</span>
+      <h2 data-i18n="contactTitle">Sprechen Sie mit uns</h2>
+      <div><div class="label" data-i18n="contactAddrLabel">Adresse</div>Goethe Care<br>Burggrafenlacherweg 18–20<br>65428 Rüsselsheim am Main</div>
+      <div><div class="label" data-i18n="contactPhoneLabel">Telefon</div>+49 000 00 000 00<span class="placeholder-tag">Platzhalter</span></div>
+      <div><div class="label" data-i18n="contactEmailLabel">E-Mail</div>info@goethe-care.de<span class="placeholder-tag">Platzhalter</span></div>
+      <div class="map-embed">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=8.4000%2C49.9850%2C8.4500%2C50.0050&layer=mapnik&marker=49.9950%2C8.4250" title="Ungefähre Lage – Rüsselsheim am Main"></iframe>
+      </div>
+      <p style="font-size:.75rem;color:var(--ink-soft);margin-top:8px;" data-i18n="mapNote">Kartenausschnitt zeigt die ungefähre Lage von Rüsselsheim am Main.</p>
+    </div>
+    <form onsubmit="return false;">
+      <input type="text" placeholder="Name" data-i18n-ph="fName">
+      <input type="email" placeholder="E-Mail" data-i18n-ph="fEmail">
+      <select data-i18n-select="fInterest">
+        <option value="">Ich interessiere mich für…</option>
+        <option>Ausbildungsplatz</option>
+        <option>Praktikum</option>
+        <option>Zukünftige Pflegeleistungen</option>
+        <option>Partnerschaft / Kooperation</option>
+        <option>Sonstiges</option>
+      </select>
+      <textarea placeholder="Nachricht" data-i18n-ph="fMsg"></textarea>
+      <button class="submit-btn" data-i18n="fSubmit">Nachricht senden →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-row">
+      <div>
+        <div class="logo" style="color:#fff;"><span class="mark" style="background:var(--gold);color:var(--forest-deep);">G</span> Goethe Care</div>
+        <p style="max-width:300px;font-size:.85rem;margin-top:10px;" data-i18n="footTagline">Ausbildungsakademie für Altenpflege in Rüsselsheim am Main.</p>
+        <div class="foot-social" style="margin-top:14px;">
+          <a class="icon-link" href="https://www.instagram.com/goethecare_ruesselsheim" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram" style="background:rgba(255,255,255,.1);color:#fff;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="foot-links">
+        <h4 data-i18n="footLegal">Rechtliches</h4>
+        <button onclick="openModal('modal-impressum')" data-i18n="footImpressum">Impressum</button>
+        <button onclick="openModal('modal-datenschutz')" data-i18n="footDatenschutz">Datenschutz</button>
+        <button onclick="openCookiePrefs()" data-i18n="footCookies">Cookie-Einstellungen</button>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 Goethe Care · Burggrafenlacherweg 18–20, 65428 Rüsselsheim am Main</div>
+  </div>
+</footer>
+
+<!-- Modals -->
+<div class="modal-overlay" id="modal-impressum">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-impressum')">✕</button>
+    <h2>Impressum</h2>
+    <h3>Verantwortlich für den Inhalt</h3>
+    <p><strong>Goethe Care</strong><br>
+    Burggrafenlacherweg 18–20, 65428 Rüsselsheim am Main <span class="placeholder-tag">Platzhalter</span></p>
+    <p>Tel.: +49 000 00 000 00 <span class="placeholder-tag">Platzhalter</span><br>
+    E-Mail: info@goethe-care.de <span class="placeholder-tag">Platzhalter</span></p>
+    <p>Handelsregister / Geschäftsführung: <span class="placeholder-tag">Platzhalter — von Geschäftsführung zu ergänzen</span></p>
+    <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: DE XXXXXXXXX <span class="placeholder-tag">Platzhalter</span></p>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-datenschutz">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-datenschutz')">✕</button>
+    <h2>Datenschutz</h2>
+    <p>Der Schutz Ihrer personenbezogenen Daten ist uns wichtig. Wir beachten DSGVO, TKG und TMG.</p>
+    <h3>Ihre Rechte als Nutzer</h3>
+    <ul>
+      <li>Auskunftsrecht (Art. 15 DSGVO)</li>
+      <li>Recht auf Berichtigung und Löschung (Art. 16, 17 DSGVO)</li>
+      <li>Widerspruchsrecht (Art. 21 DSGVO)</li>
+      <li>Beschwerderecht bei einer Aufsichtsbehörde (Art. 77 DSGVO)</li>
+    </ul>
+    <p>Details zu eingesetzten Cookies finden Sie in den <a href="#" onclick="closeModal('modal-datenschutz');openCookiePrefs();return false;" style="color:var(--forest-deep);font-weight:700;">Cookie-Einstellungen</a>.</p>
+  </div>
+</div>
+
+<!-- Cookie consent -->
+<div id="cookieBanner">
+  <div class="cookie-inner">
+    <p data-i18n="cookieText">Wir verwenden Cookies, um diese Website nutzbar zu machen und ihre Nutzung zu verstehen. Notwendige Cookies sind immer aktiv.</p>
+    <div class="cookie-btns">
+      <button class="cookie-btn-prefs" onclick="openCookiePrefs()" data-i18n="cookiePrefs">Einstellungen</button>
+      <button class="cookie-btn-reject" onclick="setCookieConsent(false)" data-i18n="cookieReject">Nur notwendige</button>
+      <button class="cookie-btn-accept" onclick="setCookieConsent(true)" data-i18n="cookieAccept">Alle akzeptieren</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-cookies">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-cookies')">✕</button>
+    <h2 data-i18n="cookieModalTitle">Cookie-Einstellungen</h2>
+    <div class="cookie-prefs-body">
+      <label><input type="checkbox" checked disabled> <span><strong data-i18n="cookieNecessaryT">Notwendig</strong> — <span data-i18n="cookieNecessaryP">für den Betrieb der Website erforderlich, kann nicht deaktiviert werden.</span></span></label>
+      <label><input type="checkbox" id="ckStats"> <span><strong data-i18n="cookieStatsT">Statistik</strong> — <span data-i18n="cookieStatsP">hilft uns zu verstehen, wie die Website genutzt wird.</span></span></label>
+      <label><input type="checkbox" id="ckMarketing"> <span><strong data-i18n="cookieMarketingT">Marketing</strong> — <span data-i18n="cookieMarketingP">für personalisierte Inhalte, z. B. Social-Media-Einbindungen.</span></span></label>
+    </div>
+    <button class="submit-btn" onclick="saveCookiePrefs()" data-i18n="cookieSave">Auswahl speichern</button>
+  </div>
+</div>
+
+<script>
+/* ---------- Instagram placeholder grid ---------- */
+const instaImages = [
+  "https://images.unsplash.com/photo-1543333995-a78aea2eee50?fm=jpg&q=60&w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?fm=jpg&q=60&w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1513159446162-54eb8bdaa79b?fm=jpg&q=60&w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1702648156180-25d8be9c9527?fm=jpg&q=60&w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1454875392665-2ac2c85e8d3e?fm=jpg&q=60&w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1624727828489-a1e03b79bba8?fm=jpg&q=60&w=400&auto=format&fit=crop"
+];
+document.getElementById('instaGrid').innerHTML = instaImages.map(src => `
+  <div class="insta-tile">
+    <img src="${src}" alt="Goethe Care Instagram Vorschau" loading="lazy">
+    <div class="overlay">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+    </div>
+  </div>`).join('');
+
+/* ---------- Cookie consent (safe storage: localStorage with in-memory fallback) ---------- */
+let memoryStore = {};
+function storageSet(key, val){ try{ localStorage.setItem(key, val); }catch(e){ memoryStore[key]=val; } }
+function storageGet(key){ try{ return localStorage.getItem(key); }catch(e){ return memoryStore[key] || null; } }
+
+function setCookieConsent(acceptAll){
+  storageSet('gc_consent_necessary', 'true');
+  storageSet('gc_consent_stats', acceptAll ? 'true' : 'false');
+  storageSet('gc_consent_marketing', acceptAll ? 'true' : 'false');
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+function openCookiePrefs(){
+  document.getElementById('ckStats').checked = storageGet('gc_consent_stats') === 'true';
+  document.getElementById('ckMarketing').checked = storageGet('gc_consent_marketing') === 'true';
+  openModal('modal-cookies');
+}
+function saveCookiePrefs(){
+  storageSet('gc_consent_necessary', 'true');
+  storageSet('gc_consent_stats', document.getElementById('ckStats').checked ? 'true' : 'false');
+  storageSet('gc_consent_marketing', document.getElementById('ckMarketing').checked ? 'true' : 'false');
+  closeModal('modal-cookies');
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+if (storageGet('gc_consent_necessary')) {
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+
+/* ---------- Modals ---------- */
+function openModal(id){ document.getElementById(id).classList.add('open'); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-overlay').forEach(ov=>{
+  ov.addEventListener('click', e=>{ if(e.target === ov) ov.classList.remove('open'); });
+});
+
+/* ---------- i18n ---------- */
+const i18n = {
+  de: {
+    brandName:"Goethe Care", nav1:"Über uns", nav2:"Ausbildung", nav3:"Zukunft", nav4:"Sprachen", nav5:"Kontakt", ctaNav:"Kontakt aufnehmen",
+    heroEyebrow:"Ausbildungsakademie · Rüsselsheim am Main",
+    heroTitle:"Bildung, die zur Berufung wird.",
+    heroLead:"Goethe Care bildet die nächste Generation der Altenpflege aus – fachlich fundiert, sprachlich vorbereitet und menschlich getragen.",
+    heroCta1:"Ausbildungsprogramm", heroCta2:"Jetzt informieren",
+    goetheQuote:"„Es ist nicht genug zu wissen, man muss auch anwenden; es ist nicht genug zu wollen, man muss auch tun.\"",
+    storyEyebrow:"Warum „Goethe Care\"?", storyTitle:"Der Name ist ein Versprechen.",
+    storyImgCaption:"Johann Heinrich Wilhelm Tischbein, „Goethe in der römischen Campagna\", 1787 — Städel Museum, Frankfurt. Gemeinfrei.",
+    storyP1:"Goethe verstand Bildung nicht als bloßes Ansammeln von Wissen, sondern als „Bildung des ganzen Menschen\" – Kopf, Hand und Herz zugleich. Genau diesem Ideal fühlen wir uns in der Pflegeausbildung verpflichtet.",
+    storyP2:"Wir starten in Rüsselsheim als Ausbildungsakademie für angehende Pflegefachkräfte – mit Fachwissen, Deutschförderung und echter Praxisbegleitung. In einem zweiten Schritt bauen wir eigene ambulante Pflegeleistungen auf, orientiert an bewährten Standards etablierter Pflegedienste in der Region.",
+    missionEyebrow:"Unsere Mission", missionTitle:"Drei Grundsätze, ein Ziel",
+    mission1T:"Fundierte Ausbildung", mission1P:"Theorie und Praxis nach anerkannten deutschen Standards – vorbereitet auf echte Anerkennungsverfahren.",
+    mission2T:"Sprache von Anfang an", mission2P:"Deutschförderung von B1 bis zur fachsprachlichen Sicherheit – begleitend zur fachlichen Ausbildung, nicht danach.",
+    mission3T:"Echte Begleitung", mission3P:"Mentoring, Ankommenshilfe und ein Weg in echte berufliche Perspektiven in der Region Rüsselsheim.",
+    goetheDualEyebrow:"Zwei Seiten desselben Denkens", goetheDualTitle:"Bildung und Gesundheit — bei Goethe untrennbar",
+    goetheEduT:"Bildung: der forschende Blick",
+    goetheEduP:"1809 entwickelte Goethe seinen eigenen Farbenkreis — nicht als Kunstübung, sondern als Ergebnis jahrelanger, geduldiger Beobachtung. Genau diese Haltung, genau hinzusehen und selbst zu verstehen, prägt auch unsere Ausbildung.",
+    goetheEduCaption:"Johann Wolfgang von Goethe, Farbenkreis, 1809. Gemeinfrei, Wikimedia Commons.",
+    goetheHealthT:"Gesundheit: Wurzeln in der Natur",
+    goetheHealthP:"Goethe widmete sich jahrzehntelang dem Studium der Pflanzenmetamorphose — überzeugt, dass Wachstum, Rhythmus und Naturverbundenheit den Menschen im Innersten gesund halten. Ein Gedanke, der in der Altenpflege bis heute trägt.",
+    goetheHealthCaption:"Symbolbild: Wachstum und Pflege.",
+    progEyebrow:"Ausbildungsprogramm", progTitle:"Was Sie bei uns lernen",
+    prog1:"Grundlagen der Alten- und Behandlungspflege, praxisnah vermittelt",
+    prog2:"Deutsch für den Pflegeberuf – von Alltagssprache bis Fachvokabular",
+    prog3:"Begleitete Praxisphasen mit erfahrenen Mentor:innen",
+    prog4:"Unterstützung bei Anerkennung, Aufenthalt und Ankommen in Deutschland",
+    prog5:"Vorbereitung auf einen sicheren Berufseinstieg in der Region",
+    futureEyebrow:"Der nächste Schritt", futureTitle:"Geplante Pflegeleistungen",
+    futureLead:"Nach dem Aufbau der Ausbildung erweitern wir Goethe Care schrittweise um ambulante Pflegeleistungen für Menschen in Rüsselsheim und Umgebung.",
+    badgeSoon:"Bald verfügbar",
+    fut1T:"Grundpflege", fut1P:"Körperpflege und Unterstützung im Alltag.",
+    fut2T:"Behandlungspflege", fut2P:"Medizinische Versorgung durch Fachpersonal.",
+    fut3T:"24h Betreuung", fut3P:"Rund-um-die-Uhr-Begleitung zu Hause.",
+    fut4T:"Verhinderungspflege", fut4P:"Entlastung für pflegende Angehörige.",
+    langEyebrow:"Unsere Studierenden kommen von überall", langTitle:"Sprachen unserer Ausbildungsgemeinschaft",
+    langSource:"Ausgewählt nach den Herkunftsländern, aus denen internationale Pflege-Ausbildungsprogramme in Deutschland (u. a. Triple Win, APAL) heute vorwiegend rekrutieren: Philippinen, Vietnam, Mexiko, Brasilien, El Salvador und Kenia.",
+    instaEyebrow:"Einblicke", instaTitle:"Goethe Care auf Instagram", instaBtn:"@goethecare_ruesselsheim folgen",
+    instaNote:"Platzhalter-Ansicht – bindet sich später live an das Instagram-Konto an.",
+    contactEyebrow:"Kontakt", contactTitle:"Sprechen Sie mit uns",
+    contactAddrLabel:"Adresse", contactPhoneLabel:"Telefon", contactEmailLabel:"E-Mail",
+    mapNote:"Kartenausschnitt zeigt die ungefähre Lage von Rüsselsheim am Main.",
+    fSubmit:"Nachricht senden →",
+    footTagline:"Ausbildungsakademie für Altenpflege in Rüsselsheim am Main.",
+    footLegal:"Rechtliches", footImpressum:"Impressum", footDatenschutz:"Datenschutz", footCookies:"Cookie-Einstellungen",
+    cookieText:"Wir verwenden Cookies, um diese Website nutzbar zu machen und ihre Nutzung zu verstehen. Notwendige Cookies sind immer aktiv.",
+    cookiePrefs:"Einstellungen", cookieReject:"Nur notwendige", cookieAccept:"Alle akzeptieren",
+    cookieModalTitle:"Cookie-Einstellungen",
+    cookieNecessaryT:"Notwendig", cookieNecessaryP:"für den Betrieb der Website erforderlich, kann nicht deaktiviert werden.",
+    cookieStatsT:"Statistik", cookieStatsP:"hilft uns zu verstehen, wie die Website genutzt wird.",
+    cookieMarketingT:"Marketing", cookieMarketingP:"für personalisierte Inhalte, z. B. Social-Media-Einbindungen.",
+    cookieSave:"Auswahl speichern"
+  },
+  en: {
+    brandName:"Goethe Care", nav1:"About", nav2:"Training", nav3:"Future", nav4:"Languages", nav5:"Contact", ctaNav:"Get in touch",
+    heroEyebrow:"Training Academy · Rüsselsheim am Main",
+    heroTitle:"Education that becomes a calling.",
+    heroLead:"Goethe Care trains the next generation of elderly-care professionals — technically grounded, language-ready, and human at heart.",
+    heroCta1:"Training programme", heroCta2:"Get in touch",
+    goetheQuote:"\"Knowing is not enough; we must apply. Willing is not enough; we must do.\"",
+    storyEyebrow:"Why \"Goethe Care\"?", storyTitle:"The name is a promise.",
+    storyImgCaption:"Johann Heinrich Wilhelm Tischbein, \"Goethe in the Roman Campagna,\" 1787 — Städel Museum, Frankfurt. Public domain.",
+    storyP1:"Goethe saw education not as the accumulation of facts, but as the formation of the whole person — mind, hand, and heart together. That's the ideal we hold ourselves to in care training.",
+    storyP2:"We're launching in Rüsselsheim as a training academy for future care professionals — with expertise, German-language support, and real practical mentoring. In a second step, we'll build our own home-care services, guided by the proven standards of established care providers in the region.",
+    missionEyebrow:"Our mission", missionTitle:"Three principles, one goal",
+    mission1T:"Solid training", mission1P:"Theory and practice aligned with recognised German standards, preparing for real qualification-recognition procedures.",
+    mission2T:"Language from day one", mission2P:"German-language support from B1 to professional fluency, alongside the training, not after it.",
+    mission3T:"Real mentoring", mission3P:"Mentoring, settling-in support, and a genuine path into a career in the Rüsselsheim region.",
+    goetheDualEyebrow:"Two sides of the same thinking", goetheDualTitle:"Education and health — inseparable for Goethe",
+    goetheEduT:"Education: the observing eye",
+    goetheEduP:"In 1809, Goethe developed his own colour wheel — not as an artistic exercise, but as the result of years of patient observation. That same habit of looking closely and understanding for yourself shapes our training too.",
+    goetheEduCaption:"Johann Wolfgang von Goethe, colour wheel, 1809. Public domain, Wikimedia Commons.",
+    goetheHealthT:"Health: rooted in nature",
+    goetheHealthP:"Goethe spent decades studying plant metamorphosis — convinced that growth, rhythm, and closeness to nature keep a person well at their core. An idea that still holds true in elder care today.",
+    goetheHealthCaption:"Illustrative image: growth and care.",
+    progEyebrow:"Training programme", progTitle:"What you'll learn with us",
+    prog1:"Foundations of elderly and treatment care, taught hands-on",
+    prog2:"German for the care profession — from everyday language to technical vocabulary",
+    prog3:"Guided practical placements with experienced mentors",
+    prog4:"Support with recognition, residence, and settling into life in Germany",
+    prog5:"Preparation for a secure career start in the region",
+    futureEyebrow:"The next step", futureTitle:"Planned care services",
+    futureLead:"Once the training programme is established, we'll gradually expand Goethe Care into home-care services for people in Rüsselsheim and the surrounding area.",
+    badgeSoon:"Coming soon",
+    fut1T:"Basic care", fut1P:"Personal hygiene and everyday support.",
+    fut2T:"Treatment care", fut2P:"Medical care delivered by trained professionals.",
+    fut3T:"24h care", fut3P:"Round-the-clock support at home.",
+    fut4T:"Respite care", fut4P:"Relief for family caregivers.",
+    langEyebrow:"Our students come from everywhere", langTitle:"Languages of our training community",
+    langSource:"Selected based on the countries most international care-training programmes in Germany (including Triple Win, APAL) currently recruit from: the Philippines, Vietnam, Mexico, Brazil, El Salvador, and Kenya.",
+    instaEyebrow:"A closer look", instaTitle:"Goethe Care on Instagram", instaBtn:"Follow @goethecare_ruesselsheim",
+    instaNote:"Placeholder view — will connect live to the Instagram account later.",
+    contactEyebrow:"Contact", contactTitle:"Get in touch",
+    contactAddrLabel:"Address", contactPhoneLabel:"Phone", contactEmailLabel:"Email",
+    mapNote:"Map shows the approximate location of Rüsselsheim am Main.",
+    fSubmit:"Send message →",
+    footTagline:"Training academy for elderly care in Rüsselsheim am Main.",
+    footLegal:"Legal", footImpressum:"Imprint", footDatenschutz:"Privacy", footCookies:"Cookie settings",
+    cookieText:"We use cookies to make this website work and to understand how it's used. Necessary cookies are always active.",
+    cookiePrefs:"Settings", cookieReject:"Necessary only", cookieAccept:"Accept all",
+    cookieModalTitle:"Cookie settings",
+    cookieNecessaryT:"Necessary", cookieNecessaryP:"required for the website to function, can't be switched off.",
+    cookieStatsT:"Statistics", cookieStatsP:"helps us understand how the site is used.",
+    cookieMarketingT:"Marketing", cookieMarketingP:"for personalised content, e.g. social media embeds.",
+    cookieSave:"Save selection"
+  }
+};
+// Vietnamese, Filipino, Spanish, Swahili fall back to German copy for now (marked for future translation),
+// except the language switcher itself still functions and nav/basic labels can be extended later.
+i18n.vi = i18n.de; i18n.tl = i18n.de; i18n.es = i18n.de; i18n.sw = i18n.de;
+
+function applyLang(lang){
+  const dict = i18n[lang] || i18n.de;
+  document.documentElement.lang = lang === 'de' ? 'de' : lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]) el.textContent = dict[key];
+  });
+}
+document.getElementById('langSelect').addEventListener('change', e => applyLang(e.target.value));
+</script>
+
+</body>
+</html>
