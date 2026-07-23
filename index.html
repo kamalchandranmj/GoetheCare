@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Goethe Care – Ausbildung & Pflege in Rüsselsheim</title>
+<title>Goethe Care – Ausbildung & Pflege</title>
 <style>
   :root{
     --forest-deep:#5C2430;
@@ -108,7 +108,8 @@
   /* Mission */
   .mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
   @media(max-width:860px){.mission-grid{grid-template-columns:1fr;}}
-  .m-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:26px;}
+  .m-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:26px;transition:transform .25s ease,box-shadow .25s ease;}
+  .m-card:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(44,32,24,.08);}
   .m-card .icon{width:46px;height:46px;border-radius:12px;background:var(--forest-pale);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:16px;}
   .m-card h3{font-size:1.05rem;margin-bottom:8px;}
   .m-card p{font-size:.9rem;color:var(--ink-soft);margin:0;}
@@ -130,7 +131,8 @@
   .future-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
   @media(max-width:900px){.future-grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:560px){.future-grid{grid-template-columns:1fr;}}
-  .f-card{background:var(--bg-tint);border:1px solid var(--border);border-radius:var(--radius);padding:20px;position:relative;}
+  .f-card{background:var(--bg-tint);border:1px solid var(--border);border-radius:var(--radius);padding:20px;position:relative;transition:transform .25s ease,box-shadow .25s ease;}
+  .f-card:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(44,32,24,.08);}
   .f-card .badge{position:absolute;top:14px;right:14px;background:var(--gold);color:var(--forest-deep);font-size:.66rem;font-weight:700;padding:3px 9px;border-radius:10px;}
   .f-card .icon{font-size:1.4rem;margin-bottom:10px;display:block;}
   .f-card h3{font-size:.98rem;margin-bottom:6px;}
@@ -210,6 +212,29 @@
   .cookie-btn-accept{background:var(--gold);color:var(--forest-deep);padding:9px 18px;border-radius:20px;font-weight:700;font-size:.82rem;border:none;}
   .cookie-prefs-body label{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;font-size:.88rem;color:var(--ink);}
   .cookie-prefs-body input[type="checkbox"]{margin-top:3px;}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+  .faq-item{border-bottom:1px solid var(--border);padding:16px 0;}
+  .faq-item summary{cursor:pointer;font-weight:700;font-size:.98rem;color:var(--ink);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary .faq-toggle{font-size:1.3rem;color:var(--gold-dark);min-width:20px;text-align:center;}
+  .faq-item[open] summary .faq-toggle{transform:rotate(45deg);}
+  .faq-item p{margin:10px 0 0;font-size:.9rem;color:var(--ink-soft);}
+  .wheel-wrap{display:grid;grid-template-columns:320px 1fr;gap:40px;align-items:center;margin-top:32px;}
+  @media(max-width:760px){.wheel-wrap{grid-template-columns:1fr;}}
+  .wheel-seg{cursor:pointer;transition:filter .2s;stroke:#fff;stroke-width:2;}
+  .wheel-seg:hover{filter:brightness(1.1);}
+  .wheel-seg.active{stroke:#fff;stroke-width:5;filter:brightness(1.08);}
+  .wheel-icon{font-size:20px;pointer-events:none;text-anchor:middle;dominant-baseline:middle;}
+  .wheel-panel{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:26px;min-height:180px;}
+  .wheel-panel .icon{font-size:1.6rem;display:block;margin-bottom:10px;}
+  .wheel-panel h3{font-size:1.1rem;margin-bottom:8px;}
+  .wheel-panel .wheel-short{font-size:.95rem;font-weight:700;color:var(--ink);margin:0 0 10px;}
+  .wheel-panel .wheel-detail{font-size:.88rem;color:var(--ink-soft);margin:0;padding-top:10px;border-top:1px solid var(--border);}
+  .wheel-hint{font-size:.78rem;color:var(--ink-soft);font-style:italic;margin-top:10px;}
 </style>
 </head>
 <body>
@@ -218,11 +243,13 @@
   <div class="container nav-row">
     <div class="logo"><span class="mark">G</span> <span data-i18n="brandName">Goethe Care</span></div>
     <nav><ul>
-      <li><a href="#ueber-uns" data-i18n="nav1">Über uns</a></li>
-      <li><a href="#ausbildung" data-i18n="nav2">Ausbildung</a></li>
-      <li><a href="#zukunft" data-i18n="nav3">Zukunft</a></li>
-      <li><a href="#sprachen" data-i18n="nav4">Sprachen</a></li>
-      <li><a href="#kontakt" data-i18n="nav5">Kontakt</a></li>
+      <li><a href="#ueber-uns">🎓 <span data-i18n="nav1">Über uns</span></a></li>
+      <li><a href="#ausbildung">📘 <span data-i18n="nav2">Ausbildung</span></a></li>
+      <li><a href="#zukunft">⚡ <span data-i18n="navServices">Leistungen</span></a></li>
+      <li><a href="#zukunft">🔭 <span data-i18n="nav3">Zukunft</span></a></li>
+      <li><a href="#sprachen">🌍 <span data-i18n="nav4">Sprachen</span></a></li>
+      <li><a href="#faq">❓ <span data-i18n="navFaq">FAQ</span></a></li>
+      <li><a href="#kontakt">✉️ <span data-i18n="nav5">Kontakt</span></a></li>
     </ul></nav>
     <div class="nav-actions">
       <a class="icon-link" href="https://www.instagram.com/goethecare_ruesselsheim" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
@@ -245,7 +272,7 @@
   <div class="hero-bg"></div>
   <div class="container">
     <div class="hero-inner">
-      <span class="eyebrow" data-i18n="heroEyebrow">Ausbildungsakademie · Rüsselsheim am Main</span>
+      <span class="eyebrow" data-i18n="heroEyebrow">Ausbildungsakademie für Altenpflege</span>
       <h1 data-i18n="heroTitle">Bildung, die zur Berufung wird.</h1>
       <p class="lead" data-i18n="heroLead">Goethe Care bildet die nächste Generation der Altenpflege aus – fachlich fundiert, sprachlich vorbereitet und menschlich getragen.</p>
       <div class="hero-ctas">
@@ -264,12 +291,12 @@
   <div class="container story-grid">
     <div>
       <span class="eyebrow" data-i18n="storyEyebrow">Warum „Goethe Care"?</span>
-      <h2 data-i18n="storyTitle">Der Name ist ein Versprechen.</h2>
+      <h2 data-i18n="storyTitle">Ein Name, der verpflichtet.</h2>
       <p data-i18n="storyP1">Goethe verstand Bildung nicht als bloßes Ansammeln von Wissen, sondern als „Bildung des ganzen Menschen" – Kopf, Hand und Herz zugleich. Genau diesem Ideal fühlen wir uns in der Pflegeausbildung verpflichtet.</p>
-      <p data-i18n="storyP2">Wir starten in Rüsselsheim als Ausbildungsakademie für angehende Pflegefachkräfte – mit Fachwissen, Deutschförderung und echter Praxisbegleitung. In einem zweiten Schritt bauen wir eigene ambulante Pflegeleistungen auf, orientiert an bewährten Standards etablierter Pflegedienste in der Region.</p>
+      <p data-i18n="storyP2">Wir starten als Ausbildungsakademie für angehende Pflegefachkräfte – mit Fachwissen, Deutschförderung und echter Praxisbegleitung. In einem zweiten Schritt bauen wir eigene ambulante Pflegeleistungen auf, orientiert an bewährten Standards etablierter Pflegedienste in der Region.</p>
     </div>
     <div>
-      <div class="story-img">
+      <div class="story-img reveal">
         <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Johann_Heinrich_Wilhelm_Tischbein_-_Goethe_in_the_Roman_Campagna_-_Google_Art_Project.jpg?width=900" alt="Goethe in der römischen Campagna, Gemälde von Johann Heinrich Wilhelm Tischbein, 1787">
       </div>
       <p style="font-size:.78rem;color:var(--ink-soft);margin-top:10px;font-style:italic;" data-i18n="storyImgCaption">Johann Heinrich Wilhelm Tischbein, „Goethe in der römischen Campagna", 1787 — Städel Museum, Frankfurt. Gemeinfrei.</p>
@@ -279,52 +306,25 @@
 
 <section>
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow" data-i18n="missionEyebrow">Unsere Mission</span>
       <h2 data-i18n="missionTitle">Drei Grundsätze, ein Ziel</h2>
     </div>
     <div class="mission-grid">
-      <div class="m-card">
+      <div class="m-card reveal">
         <div class="icon">📘</div>
         <h3 data-i18n="mission1T">Fundierte Ausbildung</h3>
         <p data-i18n="mission1P">Theorie und Praxis nach anerkannten deutschen Standards – vorbereitet auf echte Anerkennungsverfahren.</p>
       </div>
-      <div class="m-card">
+      <div class="m-card reveal">
         <div class="icon">🗣️</div>
         <h3 data-i18n="mission2T">Sprache von Anfang an</h3>
         <p data-i18n="mission2P">Deutschförderung von B1 bis zur fachsprachlichen Sicherheit – begleitend zur fachlichen Ausbildung, nicht danach.</p>
       </div>
-      <div class="m-card">
+      <div class="m-card reveal">
         <div class="icon">🤝</div>
         <h3 data-i18n="mission3T">Echte Begleitung</h3>
-        <p data-i18n="mission3P">Mentoring, Ankommenshilfe und ein Weg in echte berufliche Perspektiven in der Region Rüsselsheim.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="story" style="padding-top:0;">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow" data-i18n="goetheDualEyebrow">Zwei Seiten desselben Denkens</span>
-      <h2 data-i18n="goetheDualTitle">Bildung und Gesundheit — bei Goethe untrennbar</h2>
-    </div>
-    <div class="story-grid">
-      <div>
-        <div class="story-img">
-          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Goethe,_Farbenkreis_zur_Symbolisierung_des_menschlichen_Geistes-_und_Seelenlebens,_1809.jpg?width=700" alt="Goethes Farbenkreis von 1809 zur Symbolisierung des menschlichen Geistes- und Seelenlebens" style="object-fit:contain;background:#fff;">
-        </div>
-        <h3 style="margin-top:18px;font-size:1.05rem;" data-i18n="goetheEduT">Bildung: der forschende Blick</h3>
-        <p style="font-size:.9rem;color:var(--ink-soft);" data-i18n="goetheEduP">1809 entwickelte Goethe seinen eigenen Farbenkreis — nicht als Kunstübung, sondern als Ergebnis jahrelanger, geduldiger Beobachtung. Genau diese Haltung, genau hinzusehen und selbst zu verstehen, prägt auch unsere Ausbildung.</p>
-        <p style="font-size:.74rem;color:var(--ink-soft);font-style:italic;" data-i18n="goetheEduCaption">Johann Wolfgang von Goethe, Farbenkreis, 1809. Gemeinfrei, Wikimedia Commons.</p>
-      </div>
-      <div>
-        <div class="story-img">
-          <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="Hände halten einen jungen Setzling in der Erde">
-        </div>
-        <h3 style="margin-top:18px;font-size:1.05rem;" data-i18n="goetheHealthT">Gesundheit: Wurzeln in der Natur</h3>
-        <p style="font-size:.9rem;color:var(--ink-soft);" data-i18n="goetheHealthP">Goethe widmete sich jahrzehntelang dem Studium der Pflanzenmetamorphose — überzeugt, dass Wachstum, Rhythmus und Naturverbundenheit den Menschen im Innersten gesund halten. Ein Gedanke, der in der Altenpflege bis heute trägt.</p>
-        <p style="font-size:.74rem;color:var(--ink-soft);font-style:italic;" data-i18n="goetheHealthCaption">Symbolbild: Wachstum und Pflege.</p>
+        <p data-i18n="mission3P">Mentoring, Ankommenshilfe und ein Weg in echte berufliche Perspektiven in der Region.</p>
       </div>
     </div>
   </div>
@@ -332,42 +332,102 @@
 
 <section id="ausbildung" class="program">
   <div class="container program-grid">
-    <div class="program-img">
-      <img src="https://images.unsplash.com/photo-1731357266501-fc8594f84707?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="Praktische Ausbildung: zwei Personen betrachten gemeinsam ein anatomisches Modell">
-    </div>
     <div>
       <span class="eyebrow" data-i18n="progEyebrow">Ausbildungsprogramm</span>
       <h2 data-i18n="progTitle">Was Sie bei uns lernen</h2>
+      <p style="color:var(--ink-soft);font-size:.95rem;margin-top:-4px;" data-i18n="progIntro">Theorie allein reicht nicht — deshalb wird bei uns praktisch trainiert, angeleitet von examinierten Pflegefachkräften und erfahrenen Berufspraktiker:innen, nicht nur von Lehrbüchern.</p>
       <ul class="program-list">
         <li><span class="dot"></span><span data-i18n="prog1">Grundlagen der Alten- und Behandlungspflege, praxisnah vermittelt</span></li>
         <li><span class="dot"></span><span data-i18n="prog2">Deutsch für den Pflegeberuf – von Alltagssprache bis Fachvokabular</span></li>
-        <li><span class="dot"></span><span data-i18n="prog3">Begleitete Praxisphasen mit erfahrenen Mentor:innen</span></li>
+        <li><span class="dot"></span><span data-i18n="prog3">Praktisches Training in kleinen Gruppen, begleitet von examinierten Pflegefachkräften als Mentor:innen</span></li>
         <li><span class="dot"></span><span data-i18n="prog4">Unterstützung bei Anerkennung, Aufenthalt und Ankommen in Deutschland</span></li>
         <li><span class="dot"></span><span data-i18n="prog5">Vorbereitung auf einen sicheren Berufseinstieg in der Region</span></li>
       </ul>
+    </div>
+    <div class="program-img reveal">
+      <img src="https://images.unsplash.com/photo-1755692879703-d18a213f8691?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="Eine Ausbilderin unterrichtet eine Gruppe von Studierenden im Klassenzimmer anhand eines anatomischen Modells">
+    </div>
+  </div>
+
+  <div class="container">
+    <div style="margin-top:40px;max-width:640px;">
+      <span class="eyebrow" style="color:var(--gold);" data-i18n="servEyebrow">Ab dem ersten Tag</span>
+      <h3 style="color:#fff;font-size:1.2rem;" data-i18n="servTitle">Mehr als nur Ausbildung</h3>
+      <p style="color:#EAD9DC;font-size:.92rem;" data-i18n="servLead">Neben der dreijährigen Pflegeausbildung bieten wir von Beginn an weitere Kurse an — kürzer, gezielt, und offen auch für Menschen außerhalb unseres Ausbildungsjahrgangs.</p>
+    </div>
+    <p class="wheel-hint" style="color:#EAD9DC;" data-i18n="wheelIntro">Inspiriert von Goethes eigenem Farbenkreis von 1809 — klicken Sie auf ein Segment, um mehr über den jeweiligen Kurs zu erfahren.</p>
+    <div class="wheel-wrap">
+      <svg viewBox="0 0 300 300" width="100%" height="auto" role="img" aria-label="Interaktiver Farbenkreis mit unseren Kursen">
+        <path id="wheelSeg0" class="wheel-seg active" fill="#8B3A3A" d="M150,150 L150,10 A140,140 0 0 1 271.24,80 Z" onclick="selectWheelSegment(0)"></path>
+        <path id="wheelSeg1" class="wheel-seg" fill="#C97A3D" d="M150,150 L271.24,80 A140,140 0 0 1 271.24,220 Z" onclick="selectWheelSegment(1)"></path>
+        <path id="wheelSeg2" class="wheel-seg" fill="#D9A23E" d="M150,150 L271.24,220 A140,140 0 0 1 150,290 Z" onclick="selectWheelSegment(2)"></path>
+        <path id="wheelSeg3" class="wheel-seg" fill="#5B7A4A" d="M150,150 L150,290 A140,140 0 0 1 28.76,220 Z" onclick="selectWheelSegment(3)"></path>
+        <path id="wheelSeg4" class="wheel-seg" fill="#3D6B8B" d="M150,150 L28.76,220 A140,140 0 0 1 28.76,80 Z" onclick="selectWheelSegment(4)"></path>
+        <path id="wheelSeg5" class="wheel-seg" fill="#6E3A6E" d="M150,150 L28.76,80 A140,140 0 0 1 150,10 Z" onclick="selectWheelSegment(5)"></path>
+        <text x="197.5" y="67.7" class="wheel-icon" fill="#fff" onclick="selectWheelSegment(0)">⚡</text>
+        <text x="245" y="150" class="wheel-icon" fill="#fff" onclick="selectWheelSegment(1)">🗣️</text>
+        <text x="197.5" y="232.3" class="wheel-icon" fill="#fff" onclick="selectWheelSegment(2)">🩹</text>
+        <text x="102.5" y="232.3" class="wheel-icon" fill="#fff" onclick="selectWheelSegment(3)">🧾</text>
+        <text x="55" y="150" class="wheel-icon" fill="#fff" onclick="selectWheelSegment(4)">❤️</text>
+        <text x="102.5" y="67.7" class="wheel-icon" fill="#fff" onclick="selectWheelSegment(5)">🧠</text>
+      </svg>
+      <div class="wheel-panel">
+        <span class="icon" id="wheelIcon">⚡</span>
+        <h3 id="wheelTitle">Pflegebasiskurs</h3>
+        <p class="wheel-short" id="wheelShort">Schneller Einstieg in wenigen Wochen.</p>
+        <p class="wheel-detail" id="wheelDesc">Schneller Einstieg in wenigen Wochen — als Grundlage für die spätere Ausbildung oder direkt als Pflegehelfer:in.</p>
+      </div>
+    </div>
+    <p style="font-size:.78rem;color:#EAD9DC;font-style:italic;margin-top:16px;" data-i18n="servNote2">Hinweis: Offiziell anerkannte Erste-Hilfe-Bescheinigungen (z. B. für betriebliche Ersthelfer:innen) dürfen in Deutschland nur von Ausbildungsstellen ausgestellt werden, die bei der Qualitätssicherungsstelle Erste Hilfe (VBG) zugelassen sind. Bis zur eigenen Zulassung führen wir diese Kurse in Kooperation mit einer bereits anerkannten Ausbildungsstelle durch.</p>
+  </div>
+</section>
+
+<section class="story" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="goetheDualEyebrow">Zwei Seiten desselben Denkens</span>
+      <h2 data-i18n="goetheDualTitle">Bildung und Gesundheit — bei Goethe untrennbar</h2>
+    </div>
+    <div class="story-grid">
+      <div>
+        <h3 style="margin-top:0;font-size:1.05rem;" data-i18n="goetheEduT">Bildung: der forschende Blick</h3>
+        <p style="font-size:.9rem;color:var(--ink-soft);" data-i18n="goetheEduP">1809 entwickelte Goethe seinen eigenen Farbenkreis — nicht als Kunstübung, sondern als Ergebnis jahrelanger, geduldiger Beobachtung. Genau diese Haltung, genau hinzusehen und selbst zu verstehen, prägt auch unsere Ausbildung.</p>
+      </div>
+      <div>
+        <h3 style="margin-top:0;font-size:1.05rem;" data-i18n="goetheHealthT">Gesundheit: Wurzeln in der Natur</h3>
+        <p style="font-size:.9rem;color:var(--ink-soft);" data-i18n="goetheHealthP">Goethe widmete sich jahrzehntelang dem Studium der Pflanzenmetamorphose — überzeugt, dass Wachstum, Rhythmus und Naturverbundenheit den Menschen im Innersten gesund halten. Ein Gedanke, der in der Altenpflege bis heute trägt.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="zukunft" class="future">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow" data-i18n="futureEyebrow">Der nächste Schritt</span>
-      <h2 data-i18n="futureTitle">Geplante Pflegeleistungen</h2>
-      <p data-i18n="futureLead">Nach dem Aufbau der Ausbildung erweitern wir Goethe Care schrittweise um ambulante Pflegeleistungen für Menschen in Rüsselsheim und Umgebung.</p>
+      <h2 data-i18n="futureTitle">Was als Nächstes kommt</h2>
+      <p data-i18n="futureLead">Nach dem Aufbau der Ausbildung erweitern wir Goethe Care schrittweise um ambulante Pflegeleistungen für Menschen in der Region — und begleiten unsere Studierenden schon vom ersten Tag an.</p>
     </div>
+
+    <h3 style="font-size:.95rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.7px;margin-bottom:16px;" data-i18n="futureGroupLabel">Bald verfügbar</h3>
     <div class="future-grid">
-      <div class="f-card"><span class="badge" data-i18n="badgeSoon">Bald verfügbar</span><span class="icon">🤲</span><h3 data-i18n="fut1T">Grundpflege</h3><p data-i18n="fut1P">Körperpflege und Unterstützung im Alltag.</p></div>
-      <div class="f-card"><span class="badge" data-i18n="badgeSoon">Bald verfügbar</span><span class="icon">💉</span><h3 data-i18n="fut2T">Behandlungspflege</h3><p data-i18n="fut2P">Medizinische Versorgung durch Fachpersonal.</p></div>
-      <div class="f-card"><span class="badge" data-i18n="badgeSoon">Bald verfügbar</span><span class="icon">🕐</span><h3 data-i18n="fut3T">24h Betreuung</h3><p data-i18n="fut3P">Rund-um-die-Uhr-Begleitung zu Hause.</p></div>
-      <div class="f-card"><span class="badge" data-i18n="badgeSoon">Bald verfügbar</span><span class="icon">🔄</span><h3 data-i18n="fut4T">Verhinderungspflege</h3><p data-i18n="fut4P">Entlastung für pflegende Angehörige.</p></div>
+      <div class="f-card reveal"><span class="badge" data-i18n="badgeSoon">Bald verfügbar</span><span class="icon">🤲</span><h3 data-i18n="fut1T">Grundpflege</h3><p data-i18n="fut1P">Körperpflege und Unterstützung im Alltag.</p></div>
+      <div class="f-card reveal"><span class="badge" data-i18n="badgeSoon">Bald verfügbar</span><span class="icon">💉</span><h3 data-i18n="fut2T">Behandlungspflege</h3><p data-i18n="fut2P">Medizinische Versorgung durch Fachpersonal.</p></div>
+      <div class="f-card reveal"><span class="badge" data-i18n="badgeSoon">Bald verfügbar</span><span class="icon">🕐</span><h3 data-i18n="fut3T">24h Betreuung</h3><p data-i18n="fut3P">Rund-um-die-Uhr-Begleitung zu Hause.</p></div>
+      <div class="f-card reveal"><span class="badge" data-i18n="badgeSoon">Bald verfügbar</span><span class="icon">🔄</span><h3 data-i18n="fut4T">Verhinderungspflege</h3><p data-i18n="fut4P">Entlastung für pflegende Angehörige.</p></div>
+    </div>
+
+    <h3 style="font-size:.95rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.7px;margin:36px 0 16px;" data-i18n="studGroupLabel">Für unsere Studierenden</h3>
+    <div class="future-grid" style="grid-template-columns:repeat(2,1fr);">
+      <div class="f-card reveal"><span class="badge" data-i18n="badgeNow">Ab sofort</span><span class="icon">🏠</span><h3 data-i18n="stud1T">Unterkunft & Umzugshilfe</h3><p data-i18n="stud1P">Unterstützung bei der Suche nach möbliertem Wohnraum, Hilfe bei Anmeldung und Behördengängen sowie Begleitung beim Ankommen in einem neuen Land — speziell für Studierende aus Nicht-EU-Ländern.</p></div>
+      <div class="f-card reveal"><span class="badge" data-i18n="badgeNow">Ab sofort</span><span class="icon">🤝</span><h3 data-i18n="stud2T">Wochenend-Treffen</h3><p data-i18n="stud2P">Regelmäßige Treffen am Wochenende, damit Studierende sich untereinander kennenlernen, Freundschaften aufbauen und sich vor Ort nicht allein fühlen.</p></div>
     </div>
   </div>
 </section>
 
 <section id="sprachen" class="lang-section">
   <div class="container">
-    <div class="section-head" style="margin-bottom:0;">
+    <div class="section-head reveal" style="margin-bottom:0;">
       <span class="eyebrow" data-i18n="langEyebrow">Unsere Studierenden kommen von überall</span>
       <h2 data-i18n="langTitle">Sprachen unserer Ausbildungsgemeinschaft</h2>
     </div>
@@ -397,23 +457,66 @@
   </div>
 </section>
 
+<section id="faq" style="background:var(--bg-tint);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="faqEyebrow">Häufige Fragen</span>
+      <h2 data-i18n="faqTitle">Fragen von Studierenden und Eltern</h2>
+    </div>
+    <div>
+      <details class="faq-item reveal">
+        <summary><span data-i18n="faq1Q">Wer kann sich bei Goethe Care bewerben?</span><span class="faq-toggle">+</span></summary>
+        <p data-i18n="faq1A">Wir freuen uns über Bewerbungen aus Deutschland und dem Ausland, auch aus Nicht-EU-Ländern. Wichtig sind Motivation und die Bereitschaft, Deutsch parallel zur Ausbildung zu lernen.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span data-i18n="faq2Q">Welches Deutschniveau brauche ich zu Beginn?</span><span class="faq-toggle">+</span></summary>
+        <p data-i18n="faq2A">Ein Einstieg ist bereits ab einfachen Deutschkenntnissen möglich. Unser Fachsprachkurs Pflege B2/C1 begleitet Sie gezielt bis zum für die Ausbildung nötigen Sprachniveau.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span data-i18n="faq3Q">Wie lange dauert die Ausbildung?</span><span class="faq-toggle">+</span></summary>
+        <p data-i18n="faq3A">Die vollständige Pflegeausbildung ist gesetzlich auf drei Jahre in Vollzeit festgelegt (§ 6 Pflegeberufegesetz) — ein bundesweiter Standard, den keine Einrichtung verkürzen kann. In Teilzeit ist eine Streckung auf bis zu fünf Jahre möglich. Wer zuvor unseren Pflegebasiskurs abgeschlossen hat, kann sich unter bestimmten Voraussetzungen einen Teil der Ausbildungszeit anrechnen lassen.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span data-i18n="faq4Q">Was kostet die Ausbildung?</span><span class="faq-toggle">+</span></summary>
+        <p data-i18n="faq4A">Das hängt vom gewählten Kurs und möglichen Fördermöglichkeiten ab. Kontaktieren Sie uns für ein individuelles Angebot — die Preise werden auf Anfrage mitgeteilt.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span data-i18n="faq5Q">Hilft Goethe Care bei der Wohnungssuche?</span><span class="faq-toggle">+</span></summary>
+        <p data-i18n="faq5A">Ja. Besonders für Studierende aus Nicht-EU-Ländern unterstützen wir bei der Suche nach möbliertem Wohnraum sowie bei Anmeldung und Behördengängen.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span data-i18n="faq6Q">Was passiert nach der Ausbildung?</span><span class="faq-toggle">+</span></summary>
+        <p data-i18n="faq6A">Sie starten mit einer anerkannten Qualifikation in der Altenpflege. Perspektivisch bauen wir zudem eigene ambulante Pflegeleistungen auf, in denen Absolvent:innen eine berufliche Zukunft finden können.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span data-i18n="faq7Q">Sind die Erste-Hilfe-Kurse auch ohne Pflegehintergrund offen?</span><span class="faq-toggle">+</span></summary>
+        <p data-i18n="faq7A">Ja, unsere offenen Erste-Hilfe-Kurse richten sich an alle Interessierten aus der Allgemeinheit — kein Vorwissen nötig.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span data-i18n="faq8Q">Wie kann ich mich informieren oder bewerben?</span><span class="faq-toggle">+</span></summary>
+        <p data-i18n="faq8A">Am einfachsten über das Kontaktformular, per E-Mail oder WhatsApp weiter unten auf dieser Seite. Wir melden uns zeitnah zurück.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <section id="kontakt" class="story">
   <div class="container contact-grid">
     <div class="contact-info">
       <span class="eyebrow" data-i18n="contactEyebrow">Kontakt</span>
       <h2 data-i18n="contactTitle">Sprechen Sie mit uns</h2>
-      <div><div class="label" data-i18n="contactAddrLabel">Adresse</div>Goethe Care<br>Burggrafenlacherweg 18–20<br>65428 Rüsselsheim am Main</div>
-      <div><div class="label" data-i18n="contactPhoneLabel">Telefon</div>+49 000 00 000 00<span class="placeholder-tag">Platzhalter</span></div>
-      <div><div class="label" data-i18n="contactEmailLabel">E-Mail</div>info@goethe-care.de<span class="placeholder-tag">Platzhalter</span></div>
+      <div><div class="label">📍 <span data-i18n="contactAddrLabel">Adresse</span></div>Goethe Care<br>Burggrafenlacherweg 18–20<br>65428 Rüsselsheim am Main</div>
+      <div><div class="label">☎️ <span data-i18n="contactPhoneLabel">Telefon</span></div>+49 000 00 000 00<span class="placeholder-tag">Platzhalter</span></div>
+      <div><div class="label">✉️ <span data-i18n="contactEmailLabel">E-Mail</span></div>info@goethe-care.de<span class="placeholder-tag">Platzhalter</span></div>
       <div class="map-embed">
         <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=8.4000%2C49.9850%2C8.4500%2C50.0050&layer=mapnik&marker=49.9950%2C8.4250" title="Ungefähre Lage – Rüsselsheim am Main"></iframe>
       </div>
       <p style="font-size:.75rem;color:var(--ink-soft);margin-top:8px;" data-i18n="mapNote">Kartenausschnitt zeigt die ungefähre Lage von Rüsselsheim am Main.</p>
     </div>
-    <form onsubmit="return false;">
-      <input type="text" placeholder="Name" data-i18n-ph="fName">
-      <input type="email" placeholder="E-Mail" data-i18n-ph="fEmail">
-      <select data-i18n-select="fInterest">
+    <form id="contactForm" onsubmit="return submitEnquiry(event);">
+      <input type="text" id="fName" placeholder="Name" data-i18n-ph="fName" required>
+      <input type="email" id="fEmail" placeholder="E-Mail" data-i18n-ph="fEmail" required>
+      <select id="fInterest" data-i18n-select="fInterest">
         <option value="">Ich interessiere mich für…</option>
         <option>Ausbildungsplatz</option>
         <option>Praktikum</option>
@@ -421,9 +524,15 @@
         <option>Partnerschaft / Kooperation</option>
         <option>Sonstiges</option>
       </select>
-      <textarea placeholder="Nachricht" data-i18n-ph="fMsg"></textarea>
-      <button class="submit-btn" data-i18n="fSubmit">Nachricht senden →</button>
+      <textarea id="fMsg" placeholder="Nachricht" data-i18n-ph="fMsg"></textarea>
+      <button class="submit-btn" type="submit" data-i18n="fSubmit">Nachricht senden →</button>
+      <p style="font-size:.78rem;color:var(--ink-soft);margin:6px 0 0;" data-i18n="fPriceNote">Preise auf Anfrage — abhängig vom Kurs und möglicher Förderung.</p>
     </form>
+    <a id="whatsappLink" class="cta-btn" style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:#25D366;color:#fff;" href="https://wa.me/490000000000" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.44 1.32 4.94L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.06h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.14.82.84-3.06-.2-.31a8.19 8.19 0 0 1-1.26-4.37c0-4.53 3.69-8.22 8.23-8.22a8.17 8.17 0 0 1 8.22 8.22c0 4.53-3.69 8.25-8.19 8.25Zm4.51-6.16c-.25-.12-1.46-.72-1.68-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.96-.14.16-.29.18-.53.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43-.14 0-.31-.01-.47-.01a.9.9 0 0 0-.65.31c-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.12.16 1.73 2.64 4.19 3.7.59.25 1.04.4 1.4.52.59.19 1.12.16 1.54.1.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.15-1.18-.07-.11-.23-.17-.48-.29Z"/></svg>
+      <span data-i18n="whatsappCta">Per WhatsApp schreiben</span>
+      <span class="placeholder-tag" style="background:rgba(255,255,255,.25);color:#fff;">Platzhalter</span>
+    </a>
   </div>
 </section>
 
@@ -432,7 +541,7 @@
     <div class="foot-row">
       <div>
         <div class="logo" style="color:#fff;"><span class="mark" style="background:var(--gold);color:var(--forest-deep);">G</span> Goethe Care</div>
-        <p style="max-width:300px;font-size:.85rem;margin-top:10px;" data-i18n="footTagline">Ausbildungsakademie für Altenpflege in Rüsselsheim am Main.</p>
+        <p style="max-width:300px;font-size:.85rem;margin-top:10px;" data-i18n="footTagline">Ausbildungsakademie für Altenpflege.</p>
         <div class="foot-social" style="margin-top:14px;">
           <a class="icon-link" href="https://www.instagram.com/goethecare_ruesselsheim" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram" style="background:rgba(255,255,255,.1);color:#fff;">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
@@ -441,9 +550,9 @@
       </div>
       <div class="foot-links">
         <h4 data-i18n="footLegal">Rechtliches</h4>
-        <button onclick="openModal('modal-impressum')" data-i18n="footImpressum">Impressum</button>
-        <button onclick="openModal('modal-datenschutz')" data-i18n="footDatenschutz">Datenschutz</button>
-        <button onclick="openCookiePrefs()" data-i18n="footCookies">Cookie-Einstellungen</button>
+        <button onclick="openModal('modal-impressum')">📄 <span data-i18n="footImpressum">Impressum</span></button>
+        <button onclick="openModal('modal-datenschutz')">🔒 <span data-i18n="footDatenschutz">Datenschutz</span></button>
+        <button onclick="openCookiePrefs()">🍪 <span data-i18n="footCookies">Cookie-Einstellungen</span></button>
       </div>
     </div>
     <div class="foot-bottom">© 2026 Goethe Care · Burggrafenlacherweg 18–20, 65428 Rüsselsheim am Main</div>
@@ -552,6 +661,23 @@ if (storageGet('gc_consent_necessary')) {
 }
 
 /* ---------- Modals ---------- */
+function submitEnquiry(e){
+  e.preventDefault();
+  const name = document.getElementById('fName').value.trim();
+  const email = document.getElementById('fEmail').value.trim();
+  const interest = document.getElementById('fInterest').value;
+  const msg = document.getElementById('fMsg').value.trim();
+  const subject = encodeURIComponent('Anfrage über die Website — ' + (interest || 'Goethe Care'));
+  const body = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'E-Mail: ' + email + '\n' +
+    'Interesse: ' + (interest || '(nicht angegeben)') + '\n\n' +
+    'Nachricht:\n' + msg
+  );
+  window.location.href = 'mailto:info@goethe-care.de?subject=' + subject + '&body=' + body;
+  return false;
+}
+
 function openModal(id){ document.getElementById(id).classList.add('open'); }
 function closeModal(id){ document.getElementById(id).classList.remove('open'); }
 document.querySelectorAll('.modal-overlay').forEach(ov=>{
@@ -561,20 +687,20 @@ document.querySelectorAll('.modal-overlay').forEach(ov=>{
 /* ---------- i18n ---------- */
 const i18n = {
   de: {
-    brandName:"Goethe Care", nav1:"Über uns", nav2:"Ausbildung", nav3:"Zukunft", nav4:"Sprachen", nav5:"Kontakt", ctaNav:"Kontakt aufnehmen",
-    heroEyebrow:"Ausbildungsakademie · Rüsselsheim am Main",
+    brandName:"Goethe Care", nav1:"Über uns", nav2:"Ausbildung", nav3:"Zukunft", nav4:"Sprachen", navFaq:"FAQ", nav5:"Kontakt", ctaNav:"Kontakt aufnehmen",
+    heroEyebrow:"Ausbildungsakademie für Altenpflege",
     heroTitle:"Bildung, die zur Berufung wird.",
     heroLead:"Goethe Care bildet die nächste Generation der Altenpflege aus – fachlich fundiert, sprachlich vorbereitet und menschlich getragen.",
     heroCta1:"Ausbildungsprogramm", heroCta2:"Jetzt informieren",
     goetheQuote:"„Es ist nicht genug zu wissen, man muss auch anwenden; es ist nicht genug zu wollen, man muss auch tun.\"",
-    storyEyebrow:"Warum „Goethe Care\"?", storyTitle:"Der Name ist ein Versprechen.",
+    storyEyebrow:"Warum „Goethe Care\"?", storyTitle:"Ein Name, der verpflichtet.",
     storyImgCaption:"Johann Heinrich Wilhelm Tischbein, „Goethe in der römischen Campagna\", 1787 — Städel Museum, Frankfurt. Gemeinfrei.",
     storyP1:"Goethe verstand Bildung nicht als bloßes Ansammeln von Wissen, sondern als „Bildung des ganzen Menschen\" – Kopf, Hand und Herz zugleich. Genau diesem Ideal fühlen wir uns in der Pflegeausbildung verpflichtet.",
-    storyP2:"Wir starten in Rüsselsheim als Ausbildungsakademie für angehende Pflegefachkräfte – mit Fachwissen, Deutschförderung und echter Praxisbegleitung. In einem zweiten Schritt bauen wir eigene ambulante Pflegeleistungen auf, orientiert an bewährten Standards etablierter Pflegedienste in der Region.",
+    storyP2:"Wir starten als Ausbildungsakademie für angehende Pflegefachkräfte – mit Fachwissen, Deutschförderung und echter Praxisbegleitung. In einem zweiten Schritt bauen wir eigene ambulante Pflegeleistungen auf, orientiert an bewährten Standards etablierter Pflegedienste in der Region.",
     missionEyebrow:"Unsere Mission", missionTitle:"Drei Grundsätze, ein Ziel",
     mission1T:"Fundierte Ausbildung", mission1P:"Theorie und Praxis nach anerkannten deutschen Standards – vorbereitet auf echte Anerkennungsverfahren.",
     mission2T:"Sprache von Anfang an", mission2P:"Deutschförderung von B1 bis zur fachsprachlichen Sicherheit – begleitend zur fachlichen Ausbildung, nicht danach.",
-    mission3T:"Echte Begleitung", mission3P:"Mentoring, Ankommenshilfe und ein Weg in echte berufliche Perspektiven in der Region Rüsselsheim.",
+    mission3T:"Echte Begleitung", mission3P:"Mentoring, Ankommenshilfe und ein Weg in echte berufliche Perspektiven in der Region.",
     goetheDualEyebrow:"Zwei Seiten desselben Denkens", goetheDualTitle:"Bildung und Gesundheit — bei Goethe untrennbar",
     goetheEduT:"Bildung: der forschende Blick",
     goetheEduP:"1809 entwickelte Goethe seinen eigenen Farbenkreis — nicht als Kunstübung, sondern als Ergebnis jahrelanger, geduldiger Beobachtung. Genau diese Haltung, genau hinzusehen und selbst zu verstehen, prägt auch unsere Ausbildung.",
@@ -583,13 +709,37 @@ const i18n = {
     goetheHealthP:"Goethe widmete sich jahrzehntelang dem Studium der Pflanzenmetamorphose — überzeugt, dass Wachstum, Rhythmus und Naturverbundenheit den Menschen im Innersten gesund halten. Ein Gedanke, der in der Altenpflege bis heute trägt.",
     goetheHealthCaption:"Symbolbild: Wachstum und Pflege.",
     progEyebrow:"Ausbildungsprogramm", progTitle:"Was Sie bei uns lernen",
+    progIntro:"Theorie allein reicht nicht — deshalb wird bei uns praktisch trainiert, angeleitet von examinierten Pflegefachkräften und erfahrenen Berufspraktiker:innen, nicht nur von Lehrbüchern.",
     prog1:"Grundlagen der Alten- und Behandlungspflege, praxisnah vermittelt",
     prog2:"Deutsch für den Pflegeberuf – von Alltagssprache bis Fachvokabular",
-    prog3:"Begleitete Praxisphasen mit erfahrenen Mentor:innen",
+    prog3:"Praktisches Training in kleinen Gruppen, begleitet von examinierten Pflegefachkräften als Mentor:innen",
     prog4:"Unterstützung bei Anerkennung, Aufenthalt und Ankommen in Deutschland",
     prog5:"Vorbereitung auf einen sicheren Berufseinstieg in der Region",
-    futureEyebrow:"Der nächste Schritt", futureTitle:"Geplante Pflegeleistungen",
-    futureLead:"Nach dem Aufbau der Ausbildung erweitern wir Goethe Care schrittweise um ambulante Pflegeleistungen für Menschen in Rüsselsheim und Umgebung.",
+    navServices:"Leistungen",
+    servEyebrow:"Ab dem ersten Tag", servTitle:"Mehr als nur Ausbildung",
+    servLead:"Neben der dreijährigen Pflegeausbildung bieten wir von Beginn an weitere Kurse an — kürzer, gezielt, und offen auch für Menschen außerhalb unseres Ausbildungsjahrgangs.",
+    wheelIntro:"Inspiriert von Goethes eigenem Farbenkreis von 1809 — klicken Sie auf ein Segment, um mehr über den jeweiligen Kurs zu erfahren.",
+    badgeNow:"Ab sofort",
+    serv1T:"Pflegebasiskurs", serv1P:"Schneller Einstieg in wenigen Wochen.",
+    serv2T:"Fachsprachkurs Pflege B2/C1", serv2P:"Berufsbezogenes Deutsch, oft förderfähig.",
+    serv3T:"Erste Hilfe & Rückenschule", serv3P:"Auffrischung für Pflegekräfte.",
+    serv4T:"Anerkennungsberatung", serv4P:"Begleitung durchs Anerkennungsverfahren.",
+    serv5T:"Erste-Hilfe-Kurse für alle", serv5P:"Offene Kurse für die Allgemeinheit.",
+    serv6T:"Zusatzqualifikation Demenzbetreuung", serv6P:"Aufbaukurs für einfühlsame Demenzbetreuung.",
+    wheelP1:"Schneller Einstieg in wenigen Wochen — als Grundlage für die spätere Ausbildung oder direkt als Pflegehelfer:in.",
+    wheelP2:"Berufsbezogenes Deutsch für die Anerkennung ausländischer Abschlüsse — auch einzeln buchbar, oft förderfähig.",
+    wheelP3:"Praxisnahe Auffrischungskurse in Erster Hilfe und rückengerechtem Arbeiten für Pflegekräfte.",
+    wheelP4:"Begleitung durch das Anerkennungsverfahren ausländischer Pflegeabschlüsse — Anträge, Unterlagen, Behördenkontakt.",
+    wheelP5:"Offene Kurse für die Allgemeinheit — Wiederbelebung, Notfallverhalten und Soforthilfe. Sie lernen zusätzlich, wie Sie einen Notfall erkennen, richtig reagieren und gezielt Hilfe holen, damit mehr Menschen im Ernstfall sicher handeln können.",
+    wheelP6:"Aufbaukurs für den einfühlsamen und fachlich sicheren Umgang mit Menschen mit Demenz — für unsere Auszubildenden ebenso wie für bereits tätige Pflegekräfte.",
+    servNote2:"Hinweis: Offiziell anerkannte Erste-Hilfe-Bescheinigungen (z. B. für betriebliche Ersthelfer:innen) dürfen in Deutschland nur von Ausbildungsstellen ausgestellt werden, die bei der Qualitätssicherungsstelle Erste Hilfe (VBG) zugelassen sind. Bis zur eigenen Zulassung führen wir diese Kurse in Kooperation mit einer bereits anerkannten Ausbildungsstelle durch.",
+    futureEyebrow:"Der nächste Schritt", futureTitle:"Was als Nächstes kommt",
+    futureLead:"Nach dem Aufbau der Ausbildung erweitern wir Goethe Care schrittweise um ambulante Pflegeleistungen für Menschen in der Region — und begleiten unsere Studierenden schon vom ersten Tag an.",
+    futureGroupLabel:"Bald verfügbar", studGroupLabel:"Für unsere Studierenden",
+    studEyebrow:"Ankommen und dazugehören", studTitle:"Unterstützung für unsere Studierenden",
+    studLead:"Gerade für Studierende aus Nicht-EU-Ländern beginnt die Ausbildung schon vor dem ersten Kurstag — mit Wohnung, Behörden und dem Ankommen in einem neuen Land.",
+    stud1T:"Unterkunft & Umzugshilfe", stud1P:"Unterstützung bei der Suche nach möbliertem Wohnraum, Hilfe bei Anmeldung und Behördengängen sowie Begleitung beim Ankommen in einem neuen Land — speziell für Studierende aus Nicht-EU-Ländern.",
+    stud2T:"Wochenend-Treffen", stud2P:"Regelmäßige Treffen am Wochenende, damit Studierende sich untereinander kennenlernen, Freundschaften aufbauen und sich vor Ort nicht allein fühlen.",
     badgeSoon:"Bald verfügbar",
     fut1T:"Grundpflege", fut1P:"Körperpflege und Unterstützung im Alltag.",
     fut2T:"Behandlungspflege", fut2P:"Medizinische Versorgung durch Fachpersonal.",
@@ -599,11 +749,30 @@ const i18n = {
     langSource:"Ausgewählt nach den Herkunftsländern, aus denen internationale Pflege-Ausbildungsprogramme in Deutschland (u. a. Triple Win, APAL) heute vorwiegend rekrutieren: Philippinen, Vietnam, Mexiko, Brasilien, El Salvador und Kenia.",
     instaEyebrow:"Einblicke", instaTitle:"Goethe Care auf Instagram", instaBtn:"@goethecare_ruesselsheim folgen",
     instaNote:"Platzhalter-Ansicht – bindet sich später live an das Instagram-Konto an.",
+    faqEyebrow:"Häufige Fragen", faqTitle:"Fragen von Studierenden und Eltern",
+    faq1Q:"Wer kann sich bei Goethe Care bewerben?",
+    faq1A:"Wir freuen uns über Bewerbungen aus Deutschland und dem Ausland, auch aus Nicht-EU-Ländern. Wichtig sind Motivation und die Bereitschaft, Deutsch parallel zur Ausbildung zu lernen.",
+    faq2Q:"Welches Deutschniveau brauche ich zu Beginn?",
+    faq2A:"Ein Einstieg ist bereits ab einfachen Deutschkenntnissen möglich. Unser Fachsprachkurs Pflege B2/C1 begleitet Sie gezielt bis zum für die Ausbildung nötigen Sprachniveau.",
+    faq3Q:"Wie lange dauert die Ausbildung?",
+    faq3A:"Die vollständige Pflegeausbildung ist gesetzlich auf drei Jahre in Vollzeit festgelegt (§ 6 Pflegeberufegesetz) — ein bundesweiter Standard, den keine Einrichtung verkürzen kann. In Teilzeit ist eine Streckung auf bis zu fünf Jahre möglich. Wer zuvor unseren Pflegebasiskurs abgeschlossen hat, kann sich unter bestimmten Voraussetzungen einen Teil der Ausbildungszeit anrechnen lassen.",
+    faq4Q:"Was kostet die Ausbildung?",
+    faq4A:"Das hängt vom gewählten Kurs und möglichen Fördermöglichkeiten ab. Kontaktieren Sie uns für ein individuelles Angebot — die Preise werden auf Anfrage mitgeteilt.",
+    faq5Q:"Hilft Goethe Care bei der Wohnungssuche?",
+    faq5A:"Ja. Besonders für Studierende aus Nicht-EU-Ländern unterstützen wir bei der Suche nach möbliertem Wohnraum sowie bei Anmeldung und Behördengängen.",
+    faq6Q:"Was passiert nach der Ausbildung?",
+    faq6A:"Sie starten mit einer anerkannten Qualifikation in der Altenpflege. Perspektivisch bauen wir zudem eigene ambulante Pflegeleistungen auf, in denen Absolvent:innen eine berufliche Zukunft finden können.",
+    faq7Q:"Sind die Erste-Hilfe-Kurse auch ohne Pflegehintergrund offen?",
+    faq7A:"Ja, unsere offenen Erste-Hilfe-Kurse richten sich an alle Interessierten aus der Allgemeinheit — kein Vorwissen nötig.",
+    faq8Q:"Wie kann ich mich informieren oder bewerben?",
+    faq8A:"Am einfachsten über das Kontaktformular, per E-Mail oder WhatsApp weiter unten auf dieser Seite. Wir melden uns zeitnah zurück.",
     contactEyebrow:"Kontakt", contactTitle:"Sprechen Sie mit uns",
     contactAddrLabel:"Adresse", contactPhoneLabel:"Telefon", contactEmailLabel:"E-Mail",
     mapNote:"Kartenausschnitt zeigt die ungefähre Lage von Rüsselsheim am Main.",
     fSubmit:"Nachricht senden →",
-    footTagline:"Ausbildungsakademie für Altenpflege in Rüsselsheim am Main.",
+    fPriceNote:"Preise auf Anfrage — abhängig vom Kurs und möglicher Förderung.",
+    whatsappCta:"Per WhatsApp schreiben",
+    footTagline:"Ausbildungsakademie für Altenpflege.",
     footLegal:"Rechtliches", footImpressum:"Impressum", footDatenschutz:"Datenschutz", footCookies:"Cookie-Einstellungen",
     cookieText:"Wir verwenden Cookies, um diese Website nutzbar zu machen und ihre Nutzung zu verstehen. Notwendige Cookies sind immer aktiv.",
     cookiePrefs:"Einstellungen", cookieReject:"Nur notwendige", cookieAccept:"Alle akzeptieren",
@@ -614,20 +783,20 @@ const i18n = {
     cookieSave:"Auswahl speichern"
   },
   en: {
-    brandName:"Goethe Care", nav1:"About", nav2:"Training", nav3:"Future", nav4:"Languages", nav5:"Contact", ctaNav:"Get in touch",
-    heroEyebrow:"Training Academy · Rüsselsheim am Main",
+    brandName:"Goethe Care", nav1:"About", nav2:"Training", nav3:"Future", nav4:"Languages", navFaq:"FAQ", nav5:"Contact", ctaNav:"Get in touch",
+    heroEyebrow:"Training Academy for Elder Care",
     heroTitle:"Education that becomes a calling.",
     heroLead:"Goethe Care trains the next generation of elderly-care professionals — technically grounded, language-ready, and human at heart.",
     heroCta1:"Training programme", heroCta2:"Get in touch",
     goetheQuote:"\"Knowing is not enough; we must apply. Willing is not enough; we must do.\"",
-    storyEyebrow:"Why \"Goethe Care\"?", storyTitle:"The name is a promise.",
+    storyEyebrow:"Why \"Goethe Care\"?", storyTitle:"A name we live up to.",
     storyImgCaption:"Johann Heinrich Wilhelm Tischbein, \"Goethe in the Roman Campagna,\" 1787 — Städel Museum, Frankfurt. Public domain.",
     storyP1:"Goethe saw education not as the accumulation of facts, but as the formation of the whole person — mind, hand, and heart together. That's the ideal we hold ourselves to in care training.",
-    storyP2:"We're launching in Rüsselsheim as a training academy for future care professionals — with expertise, German-language support, and real practical mentoring. In a second step, we'll build our own home-care services, guided by the proven standards of established care providers in the region.",
+    storyP2:"We're launching as a training academy for future care professionals — with expertise, German-language support, and real practical mentoring. In a second step, we'll build our own home-care services, guided by the proven standards of established care providers in the region.",
     missionEyebrow:"Our mission", missionTitle:"Three principles, one goal",
     mission1T:"Solid training", mission1P:"Theory and practice aligned with recognised German standards, preparing for real qualification-recognition procedures.",
     mission2T:"Language from day one", mission2P:"German-language support from B1 to professional fluency, alongside the training, not after it.",
-    mission3T:"Real mentoring", mission3P:"Mentoring, settling-in support, and a genuine path into a career in the Rüsselsheim region.",
+    mission3T:"Real mentoring", mission3P:"Mentoring, settling-in support, and a genuine path into a career in the region.",
     goetheDualEyebrow:"Two sides of the same thinking", goetheDualTitle:"Education and health — inseparable for Goethe",
     goetheEduT:"Education: the observing eye",
     goetheEduP:"In 1809, Goethe developed his own colour wheel — not as an artistic exercise, but as the result of years of patient observation. That same habit of looking closely and understanding for yourself shapes our training too.",
@@ -636,13 +805,37 @@ const i18n = {
     goetheHealthP:"Goethe spent decades studying plant metamorphosis — convinced that growth, rhythm, and closeness to nature keep a person well at their core. An idea that still holds true in elder care today.",
     goetheHealthCaption:"Illustrative image: growth and care.",
     progEyebrow:"Training programme", progTitle:"What you'll learn with us",
+    progIntro:"Theory alone isn't enough — that's why training here is hands-on, guided by qualified, licensed care professionals and experienced practitioners, not just textbooks.",
     prog1:"Foundations of elderly and treatment care, taught hands-on",
     prog2:"German for the care profession — from everyday language to technical vocabulary",
-    prog3:"Guided practical placements with experienced mentors",
+    prog3:"Hands-on training in small groups, guided by licensed care professionals as mentors",
     prog4:"Support with recognition, residence, and settling into life in Germany",
     prog5:"Preparation for a secure career start in the region",
-    futureEyebrow:"The next step", futureTitle:"Planned care services",
-    futureLead:"Once the training programme is established, we'll gradually expand Goethe Care into home-care services for people in Rüsselsheim and the surrounding area.",
+    navServices:"Services",
+    servEyebrow:"From day one", servTitle:"More than just training",
+    servLead:"Alongside the three-year care training programme, we offer additional courses from the start — shorter, targeted, and open to people outside our training cohort too.",
+    wheelIntro:"Inspired by Goethe's own 1809 colour wheel — click a segment to learn more about that course.",
+    badgeNow:"Available now",
+    serv1T:"Basic care course", serv1P:"A fast entry point in just a few weeks.",
+    serv2T:"Specialist German for care (B2/C1)", serv2P:"Job-specific German, often eligible for funding.",
+    serv3T:"First aid & back-care training", serv3P:"Refresher training for care staff.",
+    serv4T:"Recognition consulting", serv4P:"Support through the recognition process.",
+    serv5T:"First aid courses for everyone", serv5P:"Open courses for the general public.",
+    serv6T:"Dementia care specialization", serv6P:"An advanced course in compassionate dementia care.",
+    wheelP1:"A fast entry point in just a few weeks — either as groundwork for the full training programme or straight into a care-assistant role.",
+    wheelP2:"Job-specific German for the recognition of foreign qualifications — bookable on its own, often eligible for funding.",
+    wheelP3:"Hands-on refresher courses in first aid and back-safe working practices for care staff.",
+    wheelP4:"Support through the recognition process for foreign care qualifications — applications, paperwork, and dealing with authorities.",
+    wheelP5:"Open courses for the general public — CPR, emergency response, and immediate first aid. You'll also learn how to recognise an emergency, respond correctly, and get help, so more people can act safely in a real emergency.",
+    wheelP6:"An advanced course in confident, compassionate dementia care — for our own trainees as well as care staff already working in the field.",
+    servNote2:"Note: officially recognised first-aid certificates (e.g. for workplace first-aiders) may only be issued in Germany by training providers authorised by the Qualitätssicherungsstelle Erste Hilfe (VBG). Until we hold that authorisation ourselves, we deliver these courses in partnership with an already-authorised provider.",
+    futureEyebrow:"The next step", futureTitle:"What comes next",
+    futureLead:"Once the training programme is established, we'll gradually expand Goethe Care into home-care services for people in the region — and support our students from day one.",
+    futureGroupLabel:"Coming soon", studGroupLabel:"For our students",
+    studEyebrow:"Arriving and belonging", studTitle:"Support for our students",
+    studLead:"For students from non-EU countries especially, the training starts well before the first day of class — with housing, paperwork, and settling into a new country.",
+    stud1T:"Accommodation & relocation support", stud1P:"Help finding furnished housing, support with registration and official paperwork, and guidance settling into a new country — specifically for students from non-EU countries.",
+    stud2T:"Weekend meetups", stud2P:"Regular weekend get-togethers so students get to know each other, build friendships, and don't feel alone in a new place.",
     badgeSoon:"Coming soon",
     fut1T:"Basic care", fut1P:"Personal hygiene and everyday support.",
     fut2T:"Treatment care", fut2P:"Medical care delivered by trained professionals.",
@@ -652,11 +845,30 @@ const i18n = {
     langSource:"Selected based on the countries most international care-training programmes in Germany (including Triple Win, APAL) currently recruit from: the Philippines, Vietnam, Mexico, Brazil, El Salvador, and Kenya.",
     instaEyebrow:"A closer look", instaTitle:"Goethe Care on Instagram", instaBtn:"Follow @goethecare_ruesselsheim",
     instaNote:"Placeholder view — will connect live to the Instagram account later.",
+    faqEyebrow:"Frequently asked questions", faqTitle:"Questions from students and parents",
+    faq1Q:"Who can apply to Goethe Care?",
+    faq1A:"We welcome applications from within Germany and abroad, including non-EU countries. What matters most is motivation and a willingness to learn German alongside the training.",
+    faq2Q:"What German level do I need to start?",
+    faq2A:"You can start with basic German. Our Specialist German for Care (B2/C1) course guides you step by step to the language level the training requires.",
+    faq3Q:"How long does the training take?",
+    faq3A:"The full care training programme is legally fixed at three years full-time under Germany's Nursing Professions Act (§ 6 PflBG) — a nationwide standard no provider can shorten. Part-time stretches this to up to five years. Anyone who's completed our basic care course beforehand may, under certain conditions, have part of that time credited toward the full programme.",
+    faq4Q:"What does the training cost?",
+    faq4A:"That depends on the course you choose and any funding you may be eligible for. Contact us for a personal quote — pricing is shared on request.",
+    faq5Q:"Does Goethe Care help with finding housing?",
+    faq5A:"Yes. Especially for students from non-EU countries, we help with finding furnished housing as well as registration and official paperwork.",
+    faq6Q:"What happens after the training?",
+    faq6A:"You start out with a recognised qualification in elder care. Longer term, we're also building our own home-care services, where graduates can find a career.",
+    faq7Q:"Are the first-aid courses open without a care background?",
+    faq7A:"Yes, our open first-aid courses are for anyone interested from the general public — no prior knowledge needed.",
+    faq8Q:"How can I find out more or apply?",
+    faq8A:"Easiest is via the contact form, email, or WhatsApp further down this page. We'll get back to you promptly.",
     contactEyebrow:"Contact", contactTitle:"Get in touch",
     contactAddrLabel:"Address", contactPhoneLabel:"Phone", contactEmailLabel:"Email",
     mapNote:"Map shows the approximate location of Rüsselsheim am Main.",
     fSubmit:"Send message →",
-    footTagline:"Training academy for elderly care in Rüsselsheim am Main.",
+    fPriceNote:"Pricing on request — depends on the course and possible funding.",
+    whatsappCta:"Message us on WhatsApp",
+    footTagline:"Training academy for elderly care.",
     footLegal:"Legal", footImpressum:"Imprint", footDatenschutz:"Privacy", footCookies:"Cookie settings",
     cookieText:"We use cookies to make this website work and to understand how it's used. Necessary cookies are always active.",
     cookiePrefs:"Settings", cookieReject:"Necessary only", cookieAccept:"Accept all",
@@ -671,15 +883,51 @@ const i18n = {
 // except the language switcher itself still functions and nav/basic labels can be extended later.
 i18n.vi = i18n.de; i18n.tl = i18n.de; i18n.es = i18n.de; i18n.sw = i18n.de;
 
+let currentLang = 'de';
 function applyLang(lang){
+  currentLang = lang;
   const dict = i18n[lang] || i18n.de;
   document.documentElement.lang = lang === 'de' ? 'de' : lang;
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const key = el.getAttribute('data-i18n');
     if(dict[key]) el.textContent = dict[key];
   });
+  selectWheelSegment(currentWheelSegment);
 }
 document.getElementById('langSelect').addEventListener('change', e => applyLang(e.target.value));
+
+/* ---------- Interactive course wheel (inspired by Goethe's 1809 Farbenkreis) ---------- */
+const wheelServiceKeys = ['serv1','serv2','serv3','serv4','serv5','serv6'];
+const wheelIcons = ['⚡','🗣️','🩹','🧾','❤️','🧠'];
+let currentWheelSegment = 0;
+function selectWheelSegment(i){
+  currentWheelSegment = i;
+  for(let n=0; n<6; n++){
+    const seg = document.getElementById('wheelSeg'+n);
+    if(seg) seg.classList.toggle('active', n === i);
+  }
+  const dict = i18n[currentLang] || i18n.de;
+  const key = wheelServiceKeys[i];
+  document.getElementById('wheelIcon').textContent = wheelIcons[i];
+  document.getElementById('wheelTitle').textContent = dict[key + 'T'] || '';
+  document.getElementById('wheelShort').textContent = dict[key + 'P'] || '';
+  document.getElementById('wheelDesc').textContent = dict['wheelP' + (i+1)] || '';
+}
+
+/* ---------- Subtle scroll-reveal (skips entirely if reduced-motion is preferred) ---------- */
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+}
 </script>
 
 </body>
